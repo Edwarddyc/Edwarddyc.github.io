@@ -18,4 +18,19 @@
 <p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>master_in_HK</title>
+    <url>/2024/09/11/master-in-HK/</url>
+    <content><![CDATA[<p>这是一篇测试文章</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/09/11/master-in-HK/wallhaven-r2d881.png"
+                      class="" title="图片引用方法一"
+                >
+]]></content>
+      <tags>
+        <tag>原创</tag>
+      </tags>
+  </entry>
 </search>
