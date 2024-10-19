@@ -102,6 +102,7 @@
 <li><p><strong>Acceptance-Rejection sampling</strong> : A method to generate random samples from a complex target distribution by sampling from a simpler proposal distribution and rejecting samples that don’t meet a certain condition.</p>
 <ul>
 <li><strong>How to work</strong> :  You sample from a proposal distribution and accept the sample only if a randomly generated number satisfies a certain acceptance criterion. This allows you to approximate the target distribution even if it’s not easy to sample from directly.</li>
+<li></li>
 </ul>
 </li>
 </ul>
