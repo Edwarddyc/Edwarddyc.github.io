@@ -28,9 +28,115 @@
                      data-src="/2024/09/11/master-in-HK/wallhaven-r2d881.png"
                       class="" title="图片引用方法一"
                 >
+
+<h3 id="Support-Regression-Vector"><a href="#Support-Regression-Vector" class="headerlink" title="Support Regression Vector"></a>Support Regression Vector</h3><p>SVM from classification to regression</p>
+<p>high-dimensional, nonlinear problems with limitation training</p>
+<p>Metaheuristic Algorithms + SVR</p>
+<p>F(x, w)</p>
+<ul>
+<li>feature space</li>
+<li></li>
+</ul>
+<p>dual space - lagragange L</p>
+<p>2.nonlinear experiments</p>
+<p>friedman function</p>
+<p>boston housing</p>
+<p>ME, PE</p>
+<h3 id="Multivariate-MARS"><a href="#Multivariate-MARS" class="headerlink" title="Multivariate (MARS)"></a>Multivariate (MARS)</h3><p>sub-regions</p>
+<p>low parameters:</p>
+<p>global parametric modeling</p>
+<p>nonparametric modeling</p>
+<p>low dimentional expansions - non-adaptive smoothing methods</p>
+<p>adaptive computation</p>
+<p>projection pursuit regression</p>
+<h6 id="adaptive-regression-splines"><a href="#adaptive-regression-splines" class="headerlink" title="adaptive regression splines"></a>adaptive regression splines</h6><p><strong>lof</strong></p>
+<p>recursive partitioning (Algorithm1 1) -&gt; continuity (truncated power basis)</p>
+<ol>
+<li>MARS - forward stepwise</li>
+<li>MARS - backwards stepwise</li>
+<li>ANOVA decomposition</li>
+</ol>
+<p>model selection % cross - validation</p>
+<p>? Mars modeing on additive data 4.2</p>
+<h3 id="Links-between-Perceptrons-MLPs-and-SVMs"><a href="#Links-between-Perceptrons-MLPs-and-SVMs" class="headerlink" title="Links between Perceptrons, MLPs and SVMs"></a>Links between Perceptrons, MLPs and SVMs</h3><p>the <strong>decision function</strong> of all these models, <strong>connections</strong>, (cross-entropy criterion)</p>
+<p>SVMs margin</p>
+<h5 id="weight-decay-overfitting-Gradient-descent"><a href="#weight-decay-overfitting-Gradient-descent" class="headerlink" title="weight decay -&gt; overfitting + Gradient descent"></a>weight decay -&gt; overfitting + Gradient descent</h5><p>normal &#x2F; stochastic (only one sample), theorem 1</p>
+<p>early stopping -&gt; margin perceptron -&gt; perceptron convergence proof</p>
+<p>theorem 2</p>
+<p>theorem 3</p>
+<h5 id="Extensions-to-Non-linear-Models"><a href="#Extensions-to-Non-linear-Models" class="headerlink" title="Extensions to Non-linear Models"></a>Extensions to Non-linear Models</h5><p>SDG, KKT</p>
+<p>lower bound of the iterations </p>
+<p>early stopping</p>
+<h5 id="A-very-simple-MLP"><a href="#A-very-simple-MLP" class="headerlink" title="A very simple MLP"></a>A very simple MLP</h5><p>perception committee</p>
 ]]></content>
       <tags>
         <tag>原创</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Markov Chain Monte Carlo(MCMC)</title>
+    <url>/2024/09/28/Markov-Chain-Monte-Carlo-MCMC/</url>
+    <content><![CDATA[<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Once I heard this method is in a book about finance which is called <strong><em>Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets</em>.</strong> The author use the method A Monte Carlo generator to generate a large  number of random events an track their evolution by predifined model rules to approximate real physical processes. There is a little difference between MCMC and monte carlo generator. I will introduce monte carlo at first and then introduce markov chain with their implementations. And finally introduce monte carlo generate in another article.</p>
+<h3 id="Monte-Carlo"><a href="#Monte-Carlo" class="headerlink" title="Monte Carlo"></a>Monte Carlo</h3><p>Monte Carlo method is alse called <strong>statistical simulation method</strong>, which uses random sampling and staistical modeling to solve complex problems with uncertainty and multiple variables.</p>
+<p>The <strong>key characteristics of monte carlo methods</strong> are random <strong>sampling</strong>, <strong>approximation</strong>, <strong>law of large number</strong> and <strong>flexibility</strong>.</p>
+<p>The work procedure of monte carlo methods below:</p>
+<ol>
+<li>Define the problem</li>
+<li>Generate random inputs</li>
+<li>Evaluate outputs</li>
+<li>Analyze results</li>
+</ol>
+<h4 id="Random-Sampling"><a href="#Random-Sampling" class="headerlink" title="Random Sampling"></a>Random Sampling</h4><p>classical random sampling method: </p>
+<ul>
+<li><p><strong>simple random sampling(SRS)</strong> : Each element in the population <strong>has an equal chance of being selected</strong>. samples are i.i.d. .</p>
+</li>
+<li><p><strong>stratified sampling</strong> : The population is divided into distinct subgroups (strata) that are each homogeneous in some characteristic.(based on this characteristic)</p>
+</li>
+<li><p><strong>systematic sampling</strong> : A systematic approach to random sampling where you select every  <em>k</em> -th element from a population list, starting from a randomly chosen point.(based solely on position&#x2F;order within the population)</p>
+</li>
+<li><p><strong>importance sampling</strong> : A Monte Carlo method where samples are drawn from a distribution that emphasizes (or “weights”) more important regions of the space, and then adjustments (weights) are applied to the results to reflect the true distribution.</p>
+<ul>
+<li><strong>How to work</strong> : Instead of sampling directly from the target distribution, you sample from an easier, auxiliary distribution, and weight the samples to correct for the difference between the two distributions.</li>
+</ul>
+</li>
+<li><p><strong>Acceptance-Rejection sampling</strong> : A method to generate random samples from a complex target distribution by sampling from a simpler proposal distribution and rejecting samples that don’t meet a certain condition.</p>
+<ul>
+<li><strong>How to work</strong> :  You sample from a proposal distribution and accept the sample only if a randomly generated number satisfies a certain acceptance criterion. This allows you to approximate the target distribution even if it’s not easy to sample from directly.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Markov-Chain-Monte-Carlo-MCMC/1727500886167.png"
+                      alt="1727500886167"
+                ></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Monte Carlo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SLIC</title>
+    <url>/2024/09/11/SLIC/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>How to learn Statistical Machine Learning1</title>
+    <url>/2024/10/19/How-to-learn-Statistical-Machine-Learning1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Learn DataBase</title>
+    <url>/2024/10/14/Learn-DataBase/</url>
+    <content><![CDATA[<h3 id="How-to-learn-database"><a href="#How-to-learn-database" class="headerlink" title="How to learn database"></a>How to learn database</h3><h5 id="ER-Model"><a href="#ER-Model" class="headerlink" title="ER Model"></a>ER Model</h5><p>Firstly, you should learn ER model, which contains entity set and entity, different entity in an entity set is distinguished by their attributes. Among their attributes, there are super key, candidate key, primary key and foreign key. Primary key is important which can determine entity uniquely, foreign key is referenced to key in other table.</p>
+<p>It involves key constraints and total participation which is important.</p>
+<p>Besides, there are some special models which involves ISA, weak entity, tenary relationship and aggregation.</p>
+<h5 id="Relational-Model"><a href="#Relational-Model" class="headerlink" title="Relational Model"></a>Relational Model</h5><p>After you learn ER model, you should know how to change it into relational model which is included by schema and instance, also cardinality(rows) and fields. Meanwhile, you will learn use SQL to create table (their synatx and data types)and put constraints in it. Operations like adding, deleting and inserting is important. And with foreign key it involves a question about (On *** CASCADE &#x2F; SET DEFAULT)</p>
+<p>You should pay attention special relations like ISA, weak entity. (how to show key constraint is important with primary key, unique, not null)</p>
+<p>View is also  a knowledge point but it’s simple.</p>
+<h5 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h5><p>Firstly, you should know the simple structure of “SELET,,,FROM,,,,WHERE,,,”. When learning this part, JOIN and LEFT JOIN is interesting. For maching String, we will use LIKE”aA_%” which is important. </p>
+<p>Set operation UNION, INTERSECT, EXCEPT is essential. Division is tricky to implement with NOT EXISTS and EXCEPT. There are also key words ALL, ANY.</p>
+<p>For aggregation part,</p>
+<h5 id="Constraints-and-Triggers"><a href="#Constraints-and-Triggers" class="headerlink" title="Constraints and Triggers"></a>Constraints and Triggers</h5><h5 id="Design-Theory-FDs-and-BCNF"><a href="#Design-Theory-FDs-and-BCNF" class="headerlink" title="Design Theory (FDs and BCNF)"></a>Design Theory (FDs and BCNF)</h5>]]></content>
   </entry>
 </search>
