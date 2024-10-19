@@ -76,7 +76,9 @@
   <entry>
     <title>Markov Chain Monte Carlo(MCMC)</title>
     <url>/2024/09/28/Markov-Chain-Monte-Carlo-MCMC/</url>
-    <content><![CDATA[<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Once I heard this method is in a book about finance which is called <strong><em>Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets</em>.</strong> The author use the method A Monte Carlo generator to generate a large  number of random events an track their evolution by predifined model rules to approximate real physical processes. There is a little difference between MCMC and monte carlo generator. I will introduce monte carlo at first and then introduce markov chain with their implementations. And finally introduce monte carlo generate in another article.</p>
+    <content><![CDATA[
+
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Once I heard this method is in a book about finance which is called <strong><em>Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets</em>.</strong> The author use the method A Monte Carlo generator to generate a large  number of random events an track their evolution by predifined model rules to approximate real physical processes. There is a little difference between MCMC and monte carlo generator. I will introduce monte carlo at first and then introduce markov chain with their implementations. And finally introduce monte carlo generate in another article.</p>
 <h3 id="Monte-Carlo"><a href="#Monte-Carlo" class="headerlink" title="Monte Carlo"></a>Monte Carlo</h3><p>Monte Carlo method is alse called <strong>statistical simulation method</strong>, which uses random sampling and staistical modeling to solve complex problems with uncertainty and multiple variables.</p>
 <p>The <strong>key characteristics of monte carlo methods</strong> are random <strong>sampling</strong>, <strong>approximation</strong>, <strong>law of large number</strong> and <strong>flexibility</strong>.</p>
 <p>The work procedure of monte carlo methods below:</p>
