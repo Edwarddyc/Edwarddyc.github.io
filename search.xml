@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2023/10/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Machine Learning:base &amp; advance</title>
     <url>/2025/06/11/Machine-Learning-base-advance/</url>
     <content><![CDATA[<p>机器学习常用于数据预处理、数据分析和数据挖掘之中。在今天主流的观念中，机器学习会被分为传统机器学习和深度学习两种，传统机器学习具有更好的可解释性，如针对回归问题的线性回归、针对分类问题的逻辑回归，树（KNN），支持向量机（SVM），还有一些聚类算法如K-Means，PCA，层次聚类（Hierarchical Clustering），关联规则等。而对于深度学习问题，则是基于很多层构建的如MLP，CNN（卷积层, Yolo），RNN（LSTM），Transformer(decoder, encoder, Bert, Chatgpt…)。</p>
@@ -13,6 +31,119 @@
       <tags>
         <tag>Algorithm</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>MySQL基础架构</title>
+    <url>/2025/05/30/MySQL%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<p>本篇文章重点讲解MySQL的基础架构问题，同时会说明在MySQL问题上一般需要重点关注的问题。</p>
+<p>了解MySQL的基础架构可以从一条MySQL语句的执行顺序去学习。MySQL大体可以分为Server层和引擎层。Server层包括连接器、缓存、分析器、优化器、执行器。存储引擎层提供数据库的读写接口，是插件式架构，最常用的是InnoDB，除此之外还有MyISAM，Memory。</p>
+<h2 id="Server层"><a href="#Server层" class="headerlink" title="Server层"></a>Server层</h2><p>Server层涵盖了MySQL大多数的核心服务功能以及所有的内置函数（如时间、日期、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
+<h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><p><strong>管理连接，权限验证</strong>。</p>
+<p>连接&amp;长连接&amp;短连接</p>
+<p>连接命令中的 mysql 是客户端工具，用来跟服务端建立连接。在完成经典的 TCP 握手后，连接器就要开始认证你的身份，这个时候用的就是你输入的用户名和密码。先连接，再在权限表中检查权限。如果连接之后没有后续动作就会处于空闲状态，使用 show processlist可以查看，sleep表示这个连接处于空闲状态。客户端如果长时间没有动静，连接器就会自动断开，这个时间是由wait_timeout控制的，默认值是8个小时。</p>
+<p>数据库连接分为长连接和短连接两种，长连接指一次连接成功后，如果客户端持续请求则一直使用一个连接。短连接指的是每次连接完成很短的几次查询后就断开。不过MySQL在使用长连接的时候会面临一个问题，MySQL在使用过程的时候临时内存保存在连接对象上，这些资源在连接断开才会释放。长连接容易因为内存过大被操作系统强行杀掉。</p>
+<p>解决措施：定期断开长连接；MySQL5.7之后，可以通过mysql_reset_connection重新初始化同时不用重新连接。</p>
+<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p><strong>命中则直接返回结果</strong>。</p>
+<p>select语句优化</p>
+<p>之前执行的语句和结果可能以key-value存储在内存上。如果发现当前执行的语句之前执行过，可以通过缓存返回。不过不建议使用，因为查询失败率很高，只要有一个表更新则缓存就会被清空。同时，在MySQL8.0之后删除了这个功能。</p>
+<h3 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h3><p><strong>词法分析，语法分析</strong>。</p>
+<p>没有命中查询缓存，则开始真正执行语句。先做词法分析，再做语法分析。</p>
+<h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><p><strong>执行计划生成，索引选择</strong>。</p>
+<p>索引</p>
+<p>当有多个索引的时候，优化器来决定选择哪个索引；当有多个表的时候，优化器来决定先使用哪个表。当优化器完成优化的时候，这个语句的执行方案就已经完成了。</p>
+<h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><p><strong>操作引擎，返回结果</strong>。</p>
+<p>权限验证</p>
+<p>开始执行的时候，要先判断一下你对这个表 T 有没有执行查询的权限，如果没有，就会返回没有权限的错误，如下所示 (在工程实现上，如果命中查询缓存，会在查询缓存返回结果的时候，做权限验证。查询也会在优化器之前调用 precheck 验证权限)。</p>
+<p>如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎提供的接口。</p>
+<h2 id="引擎层"><a href="#引擎层" class="headerlink" title="引擎层"></a>引擎层</h2><p>不同的引擎对于表数据的取数方法不同，对于事物和锁的支持也不同。</p>
+<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><p>对事务的支持，redo log的实现，行锁的实现。</p>
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><h2 id="问题综述"><a href="#问题综述" class="headerlink" title="问题综述"></a>问题综述</h2><h3 id="权限验证"><a href="#权限验证" class="headerlink" title="权限验证"></a>权限验证</h3><ol>
+<li>连接器会鉴权用户是否具有连接 MySQL 实例的权限，包括用户的账号和密码是否正确，以及用户是否被授予连接权限。</li>
+<li>分析器会鉴权用户是否具有对所请求的数据库和表的查询权限，包括是否具有查询、插入、更新、删除等操作的权限，以及是否具有访问某些列的权限。</li>
+<li>执行器会鉴权用户是否具有执行所请求的操作的权限，包括对表的读、写等操作权限，以及是否具有执行存储过程和触发器的权限。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL日志系统</title>
+    <url>/2025/05/30/MySQL%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<p>日志系统是为了从各种意外中恢复而诞生的机制，在之后发展的时候又延申了许多功能。在MySQL中，最先被发明的是在Server层的binlog（用于主从复制和数据恢复），之后InnoDB实现了Redo Log（防止崩溃）和undo log（支持事务）。除此以外，还有error log（记录MySQL服务器启动、运行或停止时出现的错误信息），general query log（记录所有到达MySQL服务器的语句），slow query log（记录执行时间超过 <code>long_query_time</code>的查询，用于性能分析和优化），Relay log（主从复制中，从服务器保存主服务器binlog的中间日志），等等。本篇文章先重点介绍binlog, redo log和undo log之后再延展一些相关的使用。</p>
+<h2 id="Redo-Log"><a href="#Redo-Log" class="headerlink" title="Redo Log"></a>Redo Log</h2><p>特点：WAL ( Write-Ahead Logging )</p>
+<p>功能：crash-safe(即使异常重启，之前提交的记录也不会丢)</p>
+<p>层次：引擎层</p>
+<p>具体实现：</p>
+<ol>
+<li>更新的时候，基于WAL机制，先写日志，再更新内存，等空闲的时候再去写磁盘。</li>
+<li>InnoDB特有</li>
+<li>InnoDB 的 redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么这块“粉板”总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写</li>
+<li>write pos 是当前记录的位置，一边写一边后移，写到第 3 号文件末尾后就回到 0 号文件开头。checkpoint 是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。write pos 和 checkpoint 之间的是log上还空着的部分，可以用来记录新的操作。如果 write pos 追上 checkpoint，表示log满了，这时候不能再执行新的更新，得停下来先擦掉一些记录，把 checkpoint 推进一下。</li>
+</ol>
+<h2 id="Bin-Log"><a href="#Bin-Log" class="headerlink" title="Bin Log"></a>Bin Log</h2><p>功能：</p>
+<p>层次：Server层</p>
+<p>具体实现：</p>
+<h2 id="Undo-Log"><a href="#Undo-Log" class="headerlink" title="Undo Log"></a>Undo Log</h2><p>功能：</p>
+<p>层次：</p>
+<p>具体实现：</p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL索引优化</title>
+    <url>/2025/06/06/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="索引作用"><a href="#索引作用" class="headerlink" title="索引作用"></a>索引作用</h2><p>索引的出现是为了提高数据查询的效率，如同书的目录一样。</p>
+<h2 id="索引模型"><a href="#索引模型" class="headerlink" title="索引模型"></a>索引模型</h2><p>常见的索引模型有哈希表，有序数组和搜索树（B+树）。</p>
+<p>InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。</p>
+<p>特点：B+树是多路平衡查找树，适合磁盘存储。支持等值查询，同时叶子节点通过指针连接，支持高效的范围查询。</p>
+<p>Memory的索引实现由哈希表实现。</p>
+<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="唯一性索引和普通索引的选择（change-buffer的优化机制）"><a href="#唯一性索引和普通索引的选择（change-buffer的优化机制）" class="headerlink" title="唯一性索引和普通索引的选择（change buffer的优化机制）"></a>唯一性索引和普通索引的选择（change buffer的优化机制）</h3><h3 id="索引选错问题（优化层的工作原理）"><a href="#索引选错问题（优化层的工作原理）" class="headerlink" title="索引选错问题（优化层的工作原理）"></a>索引选错问题（优化层的工作原理）</h3>]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个Java程序的从生到死</title>
+    <url>/2025/06/11/%E4%B8%80%E4%B8%AAJava%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BB%8E%E7%94%9F%E5%88%B0%E6%AD%BB/</url>
+    <content><![CDATA[<p>在学习Java的时候，一个重点就是学习如何实现它如何实现”Write Once, Run anywhere”。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Compiler即时编译、Garbage Collect垃圾回收，Java运行时数据区的VM stack、方法区、程序计数器PC等等细节的实现。我力图在整理Java程序运行的流程中，梳理好从javac到JVM中的每一步细节，可以将知识点连接起来。</p>
+<h2 id="前端编译：-java到-class"><a href="#前端编译：-java到-class" class="headerlink" title="前端编译：.java到.class"></a>前端编译：.java到.class</h2><p>javac(JDK内部，JVM外部)</p>
+<p>对于JVM来说，实际的输入是字节码文件，但是我们写好的是Java文件。所以我们需要通过javac来讲Java文件编译成字节码文件然后再传入JVM中。具体的步骤包括如下：程序源码-&gt;词法分析-&gt;单词流-&gt;语法分析（将Token流转换成AST）-&gt;抽象语法树-&gt;语义分析器-&gt;注解抽象语法树-&gt;字节码生成器-&gt;JVM字节码，这称之为前端编译。</p>
+<p>抽象语法树（AST）：反映代码的语法结构（如运算符、变量名、表达式嵌套等），由语法分析阶段生成。</p>
+<p>注解抽象语法树：在原始AST的基础上，通过语义分析添加了语义信息，例如：变量&#x2F;方法的数据类型（如b是int还是String）、符号的作用域（如b是局部变量还是类字段）、表达式的合法性（如b + 1是否类型兼容）。</p>
+<ul>
+<li><strong>词法分析</strong>：解决“是什么单词”的问题。</li>
+<li><strong>语法分析</strong>：解决“单词如何组合”的问题。</li>
+<li><strong>语义分析</strong>：解决“组合是否有意义”的问题。</li>
+</ul>
+<h2 id="JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令"><a href="#JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令" class="headerlink" title="JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令"></a>JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令</h2><p>（JVM内部）</p>
+<p>JVM阶段的输入是字节码文件而非源文件，这种设置就是为了“write once, run anywhere”。因为如C语言，因为需要设计到一些具体的函数与操作系统相关，不同的操作系统对应的函数就需要修改。而对于字节码来说，JVM的存在可以承担起对于每个平台的适配性。解释器就是将字节码文件中的内容“翻译”为对应平台的本地机器指令去执行。</p>
+<p>解释器承担了主要的编译工作，而JIT Compiler是一种针对hotspot的优化机制，所以说Java是一种半解释半编译的语言。</p>
+<h3 id="解释器的分类"><a href="#解释器的分类" class="headerlink" title="解释器的分类"></a>解释器的分类</h3><p>字节码解释器 &amp; 模板解释器</p>
+<p>字节码解释器：需要在执行代码时通过纯软件代码模拟字节码的执行，效率十分低；</p>
+<p>模板解释器：每一条字节码和一个模板函数相关联，模板函数中直接产生这条字节码执行时的机器码，能提高性能。</p>
+<ul>
+<li>Hotspot中，解释器主要有Intepreter模块和Code模块。<ul>
+<li>Intepreter模块：实现了解释器的核心功能；</li>
+<li>Code模块：用于管理Hotspot在运行时生成的本地机器指令。</li>
+</ul>
+</li>
+</ul>
+<h3 id="JIT-Compiler"><a href="#JIT-Compiler" class="headerlink" title="JIT Compiler"></a>JIT Compiler</h3><p>JIT编译器，Just In Time Compiler，又名即时编译器。根据它，JVM可将源代码直接编译为和本地机器平台相关的机器语言指令。</p>
+<p>Hotspot虚拟机采用二者并存的方式，在jvm执行过程中，二者相互协助，取长补短。在jvm启动的时候，解释器先发挥作用，随着程序运行时间的推移，即时编译器发挥作用，根据热点检测功能，将有价值的字节码编译为本地机器指令，以换取更高的执行效率。</p>
+<p>通过jconsole的vm模块可以看到使用JIT Compiler的情况。</p>
+<h3 id="后端编译优化"><a href="#后端编译优化" class="headerlink" title="后端编译优化"></a>后端编译优化</h3><p>Hotspot code “热点代码”：当虚拟机发现某个方法或代码块的运行特别频繁，就会被认为是热点代码。在运行时，虚拟机会把这些代码编译为本地机器码，并尽可能地优化。</p>
+]]></content>
+      <tags>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis初印象</title>
+    <url>/2025/07/04/Redis%E5%88%9D%E5%8D%B0%E8%B1%A1/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>MySQL事务隔离</title>
@@ -113,137 +244,6 @@
 <h2 id="一主多从"><a href="#一主多从" class="headerlink" title="一主多从"></a>一主多从</h2>]]></content>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL基础架构</title>
-    <url>/2025/05/30/MySQL%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</url>
-    <content><![CDATA[<p>本篇文章重点讲解MySQL的基础架构问题，同时会说明在MySQL问题上一般需要重点关注的问题。</p>
-<p>了解MySQL的基础架构可以从一条MySQL语句的执行顺序去学习。MySQL大体可以分为Server层和引擎层。Server层包括连接器、缓存、分析器、优化器、执行器。存储引擎层提供数据库的读写接口，是插件式架构，最常用的是InnoDB，除此之外还有MyISAM，Memory。</p>
-<h2 id="Server层"><a href="#Server层" class="headerlink" title="Server层"></a>Server层</h2><p>Server层涵盖了MySQL大多数的核心服务功能以及所有的内置函数（如时间、日期、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
-<h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><p><strong>管理连接，权限验证</strong>。</p>
-<p>连接&amp;长连接&amp;短连接</p>
-<p>连接命令中的 mysql 是客户端工具，用来跟服务端建立连接。在完成经典的 TCP 握手后，连接器就要开始认证你的身份，这个时候用的就是你输入的用户名和密码。先连接，再在权限表中检查权限。如果连接之后没有后续动作就会处于空闲状态，使用 show processlist可以查看，sleep表示这个连接处于空闲状态。客户端如果长时间没有动静，连接器就会自动断开，这个时间是由wait_timeout控制的，默认值是8个小时。</p>
-<p>数据库连接分为长连接和短连接两种，长连接指一次连接成功后，如果客户端持续请求则一直使用一个连接。短连接指的是每次连接完成很短的几次查询后就断开。不过MySQL在使用长连接的时候会面临一个问题，MySQL在使用过程的时候临时内存保存在连接对象上，这些资源在连接断开才会释放。长连接容易因为内存过大被操作系统强行杀掉。</p>
-<p>解决措施：定期断开长连接；MySQL5.7之后，可以通过mysql_reset_connection重新初始化同时不用重新连接。</p>
-<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p><strong>命中则直接返回结果</strong>。</p>
-<p>select语句优化</p>
-<p>之前执行的语句和结果可能以key-value存储在内存上。如果发现当前执行的语句之前执行过，可以通过缓存返回。不过不建议使用，因为查询失败率很高，只要有一个表更新则缓存就会被清空。同时，在MySQL8.0之后删除了这个功能。</p>
-<h3 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h3><p><strong>词法分析，语法分析</strong>。</p>
-<p>没有命中查询缓存，则开始真正执行语句。先做词法分析，再做语法分析。</p>
-<h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><p><strong>执行计划生成，索引选择</strong>。</p>
-<p>索引</p>
-<p>当有多个索引的时候，优化器来决定选择哪个索引；当有多个表的时候，优化器来决定先使用哪个表。当优化器完成优化的时候，这个语句的执行方案就已经完成了。</p>
-<h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><p><strong>操作引擎，返回结果</strong>。</p>
-<p>权限验证</p>
-<p>开始执行的时候，要先判断一下你对这个表 T 有没有执行查询的权限，如果没有，就会返回没有权限的错误，如下所示 (在工程实现上，如果命中查询缓存，会在查询缓存返回结果的时候，做权限验证。查询也会在优化器之前调用 precheck 验证权限)。</p>
-<p>如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎提供的接口。</p>
-<h2 id="引擎层"><a href="#引擎层" class="headerlink" title="引擎层"></a>引擎层</h2><p>不同的引擎对于表数据的取数方法不同，对于事物和锁的支持也不同。</p>
-<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><p>对事务的支持，redo log的实现，行锁的实现。</p>
-<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><h2 id="问题综述"><a href="#问题综述" class="headerlink" title="问题综述"></a>问题综述</h2><h3 id="权限验证"><a href="#权限验证" class="headerlink" title="权限验证"></a>权限验证</h3><ol>
-<li>连接器会鉴权用户是否具有连接 MySQL 实例的权限，包括用户的账号和密码是否正确，以及用户是否被授予连接权限。</li>
-<li>分析器会鉴权用户是否具有对所请求的数据库和表的查询权限，包括是否具有查询、插入、更新、删除等操作的权限，以及是否具有访问某些列的权限。</li>
-<li>执行器会鉴权用户是否具有执行所请求的操作的权限，包括对表的读、写等操作权限，以及是否具有执行存储过程和触发器的权限。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL日志系统</title>
-    <url>/2025/05/30/MySQL%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<p>日志系统是为了从各种意外中恢复而诞生的机制，在之后发展的时候又延申了许多功能。在MySQL中，最先被发明的是在Server层的binlog（用于主从复制和数据恢复），之后InnoDB实现了Redo Log（防止崩溃）和undo log（支持事务）。除此以外，还有error log（记录MySQL服务器启动、运行或停止时出现的错误信息），general query log（记录所有到达MySQL服务器的语句），slow query log（记录执行时间超过 <code>long_query_time</code>的查询，用于性能分析和优化），Relay log（主从复制中，从服务器保存主服务器binlog的中间日志），等等。本篇文章先重点介绍binlog, redo log和undo log之后再延展一些相关的使用。</p>
-<h2 id="Redo-Log"><a href="#Redo-Log" class="headerlink" title="Redo Log"></a>Redo Log</h2><p>特点：WAL ( Write-Ahead Logging )</p>
-<p>功能：crash-safe(即使异常重启，之前提交的记录也不会丢)</p>
-<p>层次：引擎层</p>
-<p>具体实现：</p>
-<ol>
-<li>更新的时候，基于WAL机制，先写日志，再更新内存，等空闲的时候再去写磁盘。</li>
-<li>InnoDB特有</li>
-<li>InnoDB 的 redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么这块“粉板”总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写</li>
-<li>write pos 是当前记录的位置，一边写一边后移，写到第 3 号文件末尾后就回到 0 号文件开头。checkpoint 是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。write pos 和 checkpoint 之间的是log上还空着的部分，可以用来记录新的操作。如果 write pos 追上 checkpoint，表示log满了，这时候不能再执行新的更新，得停下来先擦掉一些记录，把 checkpoint 推进一下。</li>
-</ol>
-<h2 id="Bin-Log"><a href="#Bin-Log" class="headerlink" title="Bin Log"></a>Bin Log</h2><p>功能：</p>
-<p>层次：Server层</p>
-<p>具体实现：</p>
-<h2 id="Undo-Log"><a href="#Undo-Log" class="headerlink" title="Undo Log"></a>Undo Log</h2><p>功能：</p>
-<p>层次：</p>
-<p>具体实现：</p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL索引优化</title>
-    <url>/2025/06/06/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="索引作用"><a href="#索引作用" class="headerlink" title="索引作用"></a>索引作用</h2><p>索引的出现是为了提高数据查询的效率，如同书的目录一样。</p>
-<h2 id="索引模型"><a href="#索引模型" class="headerlink" title="索引模型"></a>索引模型</h2><p>常见的索引模型有哈希表，有序数组和搜索树（B+树）。</p>
-<p>InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。</p>
-<p>特点：B+树是多路平衡查找树，适合磁盘存储。支持等值查询，同时叶子节点通过指针连接，支持高效的范围查询。</p>
-<p>Memory的索引实现由哈希表实现。</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="唯一性索引和普通索引的选择（change-buffer的优化机制）"><a href="#唯一性索引和普通索引的选择（change-buffer的优化机制）" class="headerlink" title="唯一性索引和普通索引的选择（change buffer的优化机制）"></a>唯一性索引和普通索引的选择（change buffer的优化机制）</h3><h3 id="索引选错问题（优化层的工作原理）"><a href="#索引选错问题（优化层的工作原理）" class="headerlink" title="索引选错问题（优化层的工作原理）"></a>索引选错问题（优化层的工作原理）</h3>]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis初印象</title>
-    <url>/2025/07/04/Redis%E5%88%9D%E5%8D%B0%E8%B1%A1/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/10/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>一个Java程序的从生到死</title>
-    <url>/2025/06/11/%E4%B8%80%E4%B8%AAJava%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BB%8E%E7%94%9F%E5%88%B0%E6%AD%BB/</url>
-    <content><![CDATA[<p>在学习Java的时候，一个重点就是学习如何实现它如何实现”Write Once, Run anywhere”。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Compiler即时编译、Garbage Collect垃圾回收，Java运行时数据区的VM stack、方法区、程序计数器PC等等细节的实现。我力图在整理Java程序运行的流程中，梳理好从javac到JVM中的每一步细节，可以将知识点连接起来。</p>
-<h2 id="前端编译：-java到-class"><a href="#前端编译：-java到-class" class="headerlink" title="前端编译：.java到.class"></a>前端编译：.java到.class</h2><p>javac(JDK内部，JVM外部)</p>
-<p>对于JVM来说，实际的输入是字节码文件，但是我们写好的是Java文件。所以我们需要通过javac来讲Java文件编译成字节码文件然后再传入JVM中。具体的步骤包括如下：程序源码-&gt;词法分析-&gt;单词流-&gt;语法分析（将Token流转换成AST）-&gt;抽象语法树-&gt;语义分析器-&gt;注解抽象语法树-&gt;字节码生成器-&gt;JVM字节码，这称之为前端编译。</p>
-<p>抽象语法树（AST）：反映代码的语法结构（如运算符、变量名、表达式嵌套等），由语法分析阶段生成。</p>
-<p>注解抽象语法树：在原始AST的基础上，通过语义分析添加了语义信息，例如：变量&#x2F;方法的数据类型（如b是int还是String）、符号的作用域（如b是局部变量还是类字段）、表达式的合法性（如b + 1是否类型兼容）。</p>
-<ul>
-<li><strong>词法分析</strong>：解决“是什么单词”的问题。</li>
-<li><strong>语法分析</strong>：解决“单词如何组合”的问题。</li>
-<li><strong>语义分析</strong>：解决“组合是否有意义”的问题。</li>
-</ul>
-<h2 id="JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令"><a href="#JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令" class="headerlink" title="JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令"></a>JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令</h2><p>（JVM内部）</p>
-<p>JVM阶段的输入是字节码文件而非源文件，这种设置就是为了“write once, run anywhere”。因为如C语言，因为需要设计到一些具体的函数与操作系统相关，不同的操作系统对应的函数就需要修改。而对于字节码来说，JVM的存在可以承担起对于每个平台的适配性。解释器就是将字节码文件中的内容“翻译”为对应平台的本地机器指令去执行。</p>
-<p>解释器承担了主要的编译工作，而JIT Compiler是一种针对hotspot的优化机制，所以说Java是一种半解释半编译的语言。</p>
-<h3 id="解释器的分类"><a href="#解释器的分类" class="headerlink" title="解释器的分类"></a>解释器的分类</h3><p>字节码解释器 &amp; 模板解释器</p>
-<p>字节码解释器：需要在执行代码时通过纯软件代码模拟字节码的执行，效率十分低；</p>
-<p>模板解释器：每一条字节码和一个模板函数相关联，模板函数中直接产生这条字节码执行时的机器码，能提高性能。</p>
-<ul>
-<li>Hotspot中，解释器主要有Intepreter模块和Code模块。<ul>
-<li>Intepreter模块：实现了解释器的核心功能；</li>
-<li>Code模块：用于管理Hotspot在运行时生成的本地机器指令。</li>
-</ul>
-</li>
-</ul>
-<h3 id="JIT-Compiler"><a href="#JIT-Compiler" class="headerlink" title="JIT Compiler"></a>JIT Compiler</h3><p>JIT编译器，Just In Time Compiler，又名即时编译器。根据它，JVM可将源代码直接编译为和本地机器平台相关的机器语言指令。</p>
-<p>Hotspot虚拟机采用二者并存的方式，在jvm执行过程中，二者相互协助，取长补短。在jvm启动的时候，解释器先发挥作用，随着程序运行时间的推移，即时编译器发挥作用，根据热点检测功能，将有价值的字节码编译为本地机器指令，以换取更高的执行效率。</p>
-<p>通过jconsole的vm模块可以看到使用JIT Compiler的情况。</p>
-<h3 id="后端编译优化"><a href="#后端编译优化" class="headerlink" title="后端编译优化"></a>后端编译优化</h3><p>Hotspot code “热点代码”：当虚拟机发现某个方法或代码块的运行特别频繁，就会被认为是热点代码。在运行时，虚拟机会把这些代码编译为本地机器码，并尽可能地优化。</p>
-]]></content>
-      <tags>
-        <tag>JAVA</tag>
       </tags>
   </entry>
 </search>
