@@ -13,21 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/10/14/learn-database/"/>
+    <link rel="canonical" href="http://example.com/2025/06/06/mysql事务隔离/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="How to learn databaseER ModelFirstly, you should learn ER model, which contains entity set and entity, different entity in an entity set is distinguished by their attributes. Among their attributes, t">
+        <meta name="description" content="事务事务的定义事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance) VA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn DataBase">
-<meta property="og:url" content="http://example.com/2024/10/14/Learn-DataBase/index.html">
+<meta property="og:title" content="MySQL事务隔离">
+<meta property="og:url" content="http://example.com/2025/06/06/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="How to learn databaseER ModelFirstly, you should learn ER model, which contains entity set and entity, different entity in an entity set is distinguished by their attributes. Among their attributes, t">
+<meta property="og:description" content="事务事务的定义事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance) VA">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-10-14T09:48:12.000Z">
-<meta property="article:modified_time" content="2024-10-14T10:53:10.225Z">
+<meta property="article:published_time" content="2025-06-06T06:11:54.000Z">
+<meta property="article:modified_time" content="2025-07-05T04:32:48.956Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,7 +41,7 @@
     
     <title>
         
-            Learn DataBase -
+            MySQL事务隔离 -
         
         EDYC&#39;s Blog
     </title>
@@ -381,7 +382,7 @@
 
         <div class="article-title">
             
-                <h1 class="article-title-regular">Learn DataBase</h1>
+                <h1 class="article-title-regular">MySQL事务隔离</h1>
             
             </div>
             
@@ -396,38 +397,49 @@
                     <div class="author flex items-center">
                         <span class="name text-default-text-color text-lg font-semibold">Edward YC</span>
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-10-14 17:48:12</span>
-        <span class="mobile">2024-10-14 17:48:12</span>
+        <span class="desktop">2025-06-06 14:11:54</span>
+        <span class="mobile">2025-06-06 14:11:54</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-14 18:53:10</span>
-            <span class="mobile">2024-10-14 18:53:10</span>
+            <span class="desktop">2025-07-05 12:32:48</span>
+            <span class="mobile">2025-07-05 12:32:48</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
     
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>252 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>10 Mins</span>
         </span>
     
     
@@ -446,34 +458,118 @@
 
 
         <div class="article-content markdown-body">
-            <h3 id="How-to-learn-database"><a href="#How-to-learn-database" class="headerlink" title="How to learn database"></a>How to learn database</h3><h5 id="ER-Model"><a href="#ER-Model" class="headerlink" title="ER Model"></a>ER Model</h5><p>Firstly, you should learn ER model, which contains entity set and entity, different entity in an entity set is distinguished by their attributes. Among their attributes, there are super key, candidate key, primary key and foreign key. Primary key is important which can determine entity uniquely, foreign key is referenced to key in other table.</p>
-<p>It involves key constraints and total participation which is important.</p>
-<p>Besides, there are some special models which involves ISA, weak entity, tenary relationship and aggregation.</p>
-<h5 id="Relational-Model"><a href="#Relational-Model" class="headerlink" title="Relational Model"></a>Relational Model</h5><p>After you learn ER model, you should know how to change it into relational model which is included by schema and instance, also cardinality(rows) and fields. Meanwhile, you will learn use SQL to create table (their synatx and data types)and put constraints in it. Operations like adding, deleting and inserting is important. And with foreign key it involves a question about (On *** CASCADE &#x2F; SET DEFAULT)</p>
-<p>You should pay attention special relations like ISA, weak entity. (how to show key constraint is important with primary key, unique, not null)</p>
-<p>View is also  a knowledge point but it’s simple.</p>
-<h5 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h5><p>Firstly, you should know the simple structure of “SELET,,,FROM,,,,WHERE,,,”. When learning this part, JOIN and LEFT JOIN is interesting. For maching String, we will use LIKE”aA_%” which is important. </p>
-<p>Set operation UNION, INTERSECT, EXCEPT is essential. Division is tricky to implement with NOT EXISTS and EXCEPT. There are also key words ALL, ANY.</p>
-<p>For aggregation part,</p>
-<h5 id="Constraints-and-Triggers"><a href="#Constraints-and-Triggers" class="headerlink" title="Constraints and Triggers"></a>Constraints and Triggers</h5><h5 id="Design-Theory-FDs-and-BCNF"><a href="#Design-Theory-FDs-and-BCNF" class="headerlink" title="Design Theory (FDs and BCNF)"></a>Design Theory (FDs and BCNF)</h5>
+            <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="事务的定义"><a href="#事务的定义" class="headerlink" title="事务的定义"></a>事务的定义</h2><p>事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- 开始事务</span><br><span class="line">START TRANSACTION;  -- 或者 BEGIN</span><br><span class="line"></span><br><span class="line">-- 执行SQL语句</span><br><span class="line">INSERT INTO accounts (user_id, balance) VALUES (1, 1000);</span><br><span class="line">UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;</span><br><span class="line">UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;</span><br><span class="line"></span><br><span class="line">-- 提交事务</span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">-- 或者回滚事务</span><br><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="事务的基本特性-ACID"><a href="#事务的基本特性-ACID" class="headerlink" title="事务的基本特性 ACID"></a>事务的基本特性 ACID</h2><ul>
+<li>A 原子性：保证事务中的所有操作要么全部执行，要么全部不执行；</li>
+<li>C 一致性：事务执行前后，数据库从一个一致状态转换为另一个一致状态；</li>
+<li>I 隔离性：多个事务并发执行的时候，事务之间互不影响；</li>
+<li>D 持久性：事务一旦提交，结果是永久的。</li>
+</ul>
+<p>有一种角度思考事务的基本特性，就是通过事务的原子性，隔离性和持久性去实现事务的一致性。</p>
+<h2 id="事务的隔离性"><a href="#事务的隔离性" class="headerlink" title="事务的隔离性"></a>事务的隔离性</h2><p>在涉及到事务的隔离性上时，首先要明白为什么需要隔离性。因为当多个事务并发执行的时候，容易出现以下问题：</p>
+<ul>
+<li>脏读：指一个事务可以读到其他事务未提交的修改（修改问题）；</li>
+<li>不可重复读：指一个事务重复读同一个记录时，前后内容不一致（修改问题）；</li>
+<li>幻读：指一个事务重复读同一个记录时，前后数量不一致（插入问题）；</li>
+</ul>
+<h2 id="事务隔离级别的具体定义"><a href="#事务隔离级别的具体定义" class="headerlink" title="事务隔离级别的具体定义"></a>事务隔离级别的具体定义</h2><p>事务的隔离级别由低到高为：读未提交，读已提交，可重复读，串行化。随着事务的隔离级别越来越高，事务的执行效率也越来越低。</p>
+<ul>
+<li>读未提交：一个事务可以读取另一个事务未提交的修改；</li>
+<li>读已提交：一个事务可以读取另一个事务已提交的修改；</li>
+<li>可重复读：一个事务执行过程中看到的数据总是和启动时的数据保持一致；</li>
+<li>串行化：对于同一行记录，读会加读锁，写会加写锁。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完才能开始执行。<ul>
+<li>串行化下锁的具体规则<ul>
+<li>读锁（共享锁&#x2F;S锁）与写锁（排他锁&#x2F;X锁）会冲突</li>
+<li>读锁与读锁不会冲突</li>
+<li>写锁与写锁会冲突</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务的具体实现"><a href="#事务的具体实现" class="headerlink" title="事务的具体实现"></a>事务的具体实现</h2><p>首先，事务的具体实现依靠的是执行引擎InnoDB，它实现了多种锁和MVCC来应对并发问题时的事务隔离性问题。</p>
+<h3 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h3><p>在事务的可重复读的隔离条件下，由数据库的多版本并发控制（MVCC）来支持。MVCC类似于一种视图概念，是在事务启动的时候针对整个库的一种快照。InnoDB 里面每个事务有一个唯一的事务 ID，叫作 transaction id。它是在事务开始的时候向 InnoDB 的事务系统申请的，是按申请顺序严格递增的。而每行数据也都是有多个版本的。每次事务更新数据的时候，都会生成一个新的数据版本，并且把 transaction id 赋值给这个数据版本的事务 ID，记为 row trx_id。同时，旧的数据版本要保留，并且在新的数据版本中，能够有信息可以直接拿到它。</p>
+<p>按照可重复读的定义，一个事务启动的时候，能够看到所有已经提交的事务结果。但是之后，这个事务执行期间，其他事务的更新对它不可见。<br>因此，一个事务只需要在启动的时候声明说，“以我启动的时刻为准，如果一个数据版本是在我启动之前生成的，就认；如果是我启动以后才生成的，我就不认，我必须要找到它的上一个版本”。（根据undo log回滚）</p>
+<p>InnoDB为每个事务在启动的时候构建了一个数组，用来保存这个事务在启动瞬间，当前正在“活跃”的所有事务ID。数组里面事务 ID 的最小值记为低水位，当前系统里面已经创建过的事务 ID 的最大值加 1 记为高水位。<br>这个视图数组和高水位，就组成了当前事务的一致性视图（read-view）。</p>
+<p>InnoDB 利用了“所有数据都有多个版本”的这个特性，实现了“秒级创建快照”的能力。</p>
+<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><p>MySQL里的锁大致可以分为全局锁、表锁和行锁。</p>
+<h2 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h2><p>全局锁就是对整个数据库实例加锁。MySQL 提供了一个加全局读锁的方法，命令是 Flush tables with read lock (FTWRL)。当你需要让整个库处于只读状态的时候，可以使用这个命令，之后其他线程的以下语句会被阻塞：数据更新语句（数据的增删改）、数据定义语句（包括建表、修改表结构等）和更新类事务的提交语句。</p>
+<p><strong>应用场景</strong>：全库逻辑备份（通过FTWRL来确保数据库不会被其他线程修改，此时的数据库是只读的状态）</p>
+<p>全库逻辑备份的方法二：在可重复读隔离级别下开启一个事务（拿到一致性视图，MVCC）-（mysqldump官方自带的逻辑备份工具，使用参数-single-transaction）。</p>
+<p>全库逻辑备份的方法三：将数据库设置为readonly（不过不建议这样做，因为通常会依赖数据库是否是readonly来判断是主库还是备库，同时应对异常处理机制上也有差异，FTWRL会在异常后恢复，但是readonly会保持只读状态）</p>
+<h2 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h2><p>MySQL里面表级锁有两种：一种是表锁，另一种是MDL（meta data lock）。</p>
+<ul>
+<li>表锁的语法是 lock tables … read&#x2F;write。与 FTWRL 类似，可以用 unlock tables 主动释放锁，也可以在客户端断开的时候自动释放。在还没有出现更细粒度的锁的时候，表锁是最常用的处理并发的方式。而对于 InnoDB 这种支持行锁的引擎，一般不使用 lock tables 命令来控制并发，毕竟锁住整个表的影响面还是太大。</li>
+<li>另一类表级的锁是 MDL（metadata lock)。<strong>MDL 不需要显式使用，在访问一个表的时候会被自动加上</strong>。MDL 的作用是，保证读写的正确性。<strong>MDL作用是防止DDL(data definition language)和DML(data manipulation language)并发的冲突</strong><ul>
+<li>MySQL 5.5 版本中引入了 MDL，当对一个表做增删改查操作的时候，加 MDL 读锁；当要对表做结构变更操作的时候，加 MDL 写锁。<ul>
+<li>读锁之间不互斥，因此你可以有多个线程同时对一张表增删改查。</li>
+<li>读写锁之间、写锁之间是互斥的，用来保证变更表结构操作的安全性。因此，如果有两个线程要同时给一个表加字段，其中一个要等另一个执行完才能开始执行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>InnoDB支持行锁但是MyISAM不支持行锁。</p>
+<h3 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h3><p>在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束的时候才释放。</p>
+<p>（优化思路：如果你的事务中需要锁多个行，要把最可能造成锁冲突、最可能影响并发度的锁尽量往后放）。</p>
+<h3 id="死锁和死锁检测"><a href="#死锁和死锁检测" class="headerlink" title="死锁和死锁检测"></a>死锁和死锁检测</h3><p>当并发系统中不同线程出现循环资源依赖，涉及的线程都在等待别的线程释放资源时，就会导致这几个线程都进入无限等待的状态，称为死锁。</p>
+<p>当发生死锁的时候，会有两种策略：</p>
+<ul>
+<li>一种策略是，直接进入等待，直到超时。通过参数innodb_lock_wait_timeout来设置；</li>
+<li>另一种策略是，发起死锁检测，当检测到死锁的时候，回滚某一个事务并让其他事务继续执行。通过参数innodb_deadlock_detect设置为on启动。（常用，优化思路-&gt;控制并发度）</li>
+</ul>
+<h2 id="间隙锁"><a href="#间隙锁" class="headerlink" title="间隙锁"></a>间隙锁</h2><p>如果只有行锁的话，两个事务在并发执行的时候，事务A在重复读取一个数据的时候，如果事务B插入了一个数据，事务A有可能会读取到这个新的数据上去。而这就是幻读问题，既一个事务在重复读取同一个条件的时候，两次读取的结果数是不同的。</p>
+<p>在可重复读隔离级别下，普通的查询是快照读，是不会看到别的事务插入的数据的。因此，幻读是在“当前读”下才会出现的（select for update：当前读，对数据加写锁；select share in mode：当前读，对数据加读锁）</p>
+<h1 id="开发架构"><a href="#开发架构" class="headerlink" title="开发架构"></a>开发架构</h1><p>我认为在思考并发问题的时候，事务的设计和锁的实现保障了在本地的MySQL数据库能合理解各种决并发问题。不过，为了应对更大的需求量，会有主从架构的出现来缓解访问压力，我认为这里也需要考虑主备的一致性问题，所以把它算在了并发问题的第三部分。</p>
+<h2 id="一主一备"><a href="#一主一备" class="headerlink" title="一主一备"></a>一主一备</h2><h3 id="MySQL主备的基本原理"><a href="#MySQL主备的基本原理" class="headerlink" title="MySQL主备的基本原理"></a>MySQL主备的基本原理</h3><p>客户端的读写都直接访问节点A，而节点B作为节点A的备库，只是将A的更新都同步过来，到本地执行。</p>
+<p>一般会把节点B设置为只读模式（readonly），原因如下：（同步更新的线程拥有超级权限可以无视readonly）</p>
+<ol>
+<li>有时候一些运营类的查询语句会被放到备库上去查，设置为只读可以防止误操作；</li>
+<li>防止切换过程，因为双写产生bug；</li>
+<li>可以用readonly去判断是否为备库。</li>
+</ol>
+<p>备库 B 跟主库 A 之间维持了一个长连接。主库 A 内部有一个线程，专门用于服务备库 B 的这个长连接。一个事务日志同步的完整过程是这样的：</p>
+<ol>
+<li>在备库 B 上通过 change master 命令，设置主库 A 的 IP、端口、用户名、密码，以及要从哪个位置开始请求 binlog，这个位置包含文件名和日志偏移量。</li>
+<li>在备库 B 上执行 start slave 命令，这时候备库会启动两个线程，就是 io_thread 和 sql_thread。其中 io_thread 负责与主库建立连接，sql_thread负责在本地执行binlog上的更新语句。</li>
+<li>主库 A 校验完用户名、密码后，开始按照备库 B 传过来的位置，从本地读取 binlog，发给 B。</li>
+<li>备库 B 拿到 binlog 后，写到本地文件，称为中转日志（relay log）。</li>
+<li>sql_thread 读取中转日志，解析出日志里的命令，并执行。</li>
+</ol>
+<h3 id="双M结构"><a href="#双M结构" class="headerlink" title="双M结构"></a>双M结构</h3><p>上述是M-S结构，实际工作中更常用的是双M结构，区别在于双M结构的节点A和节点B互为主备关系。这样在切换的时候不需要再修改主备关系。</p>
+<p>问题：因为互为备库，所以会出现循环复制的问题，以下是解决方案：</p>
+<ul>
+<li>规定两个库的 server id 必须不同，如果相同，则它们之间不能设定为主备关系；</li>
+<li>一个备库接到 binlog 并在重放的过程中，生成与原 binlog 的 server id 相同的新的 binlog；</li>
+<li>每个库在收到从自己的主库发过来的日志后，先判断 server id，如果跟自己的相同，表示这个日志是自己生成的，就直接丢弃这个日志。</li>
+</ul>
+<p>按照这个逻辑，如果我们设置了双 M 结构，日志的执行流就会变成这样：</p>
+<ul>
+<li>从节点 A 更新的事务，binlog 里面记的都是 A 的 server id；</li>
+<li>传到节点 B 执行一次以后，节点 B 生成的 binlog 的 server id 也是 A 的 server id；</li>
+<li>再传回给节点 A，A 判断到这个 server id 与自己的相同，就不会再处理这个日志。所以，死循环在这里就断掉了。</li>
+</ul>
+<h2 id="一主多从"><a href="#一主多从" class="headerlink" title="一主多从"></a>一主多从</h2>
         </div>
 
         
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Learn DataBase</li>
+        <li><strong>Title:</strong> MySQL事务隔离</li>
         <li><strong>Author:</strong> Edward YC</li>
         <li><strong>Created at
-                :</strong> 2024-10-14 17:48:12</li>
+                :</strong> 2025-06-06 14:11:54</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-14 18:53:10
+                    :</strong> 2025-07-05 12:32:48
             </li>
         
         <li>
-            <strong>Link:</strong> https://edwarddyc.github.io/2024/10/14/Learn-DataBase/
+            <strong>Link:</strong> https://edwarddyc.github.io/2025/06/06/MySQL事务隔离/
         </li>
         <li>
             <strong>
@@ -491,6 +587,14 @@
         
 
         
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/MySQL/">#MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
 
@@ -500,13 +604,13 @@
                     <div class="article-prev">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/10/19/How-to-learn-Statistical-Machine-Learning1/"
+                        href="/2025/06/06/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">How to learn Statistical Machine Learning1</span>
+                                <span class="post-nav-title-item">MySQL索引优化</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -516,10 +620,10 @@
                     <div class="article-next">
                         <a class="next"
                         rel="next"
-                        href="/2024/09/28/Markov-Chain-Monte-Carlo-MCMC/"
+                        href="/2025/05/30/MySQL%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Markov Chain Monte Carlo(MCMC)</span>
+                                <span class="post-nav-title-item">MySQL日志系统</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -584,8 +688,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Learn DataBase</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-learn-database"><span class="nav-text">How to learn database</span></a></li></ol>
+        <div class="page-title">MySQL事务隔离</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">事务的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7-ACID"><span class="nav-text">事务的基本特性 ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9A%E4%B9%89"><span class="nav-text">事务隔离级别的具体定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-text">事务的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVCC"><span class="nav-text">MVCC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%81"><span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E9%94%81"><span class="nav-text">全局锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E7%BA%A7%E9%94%81"><span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E9%94%81"><span class="nav-text">行锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E9%94%81"><span class="nav-text">两阶段锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E5%92%8C%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B"><span class="nav-text">死锁和死锁检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%B4%E9%9A%99%E9%94%81"><span class="nav-text">间隙锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%9E%B6%E6%9E%84"><span class="nav-text">开发架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E4%B8%80%E5%A4%87"><span class="nav-text">一主一备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E4%B8%BB%E5%A4%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">MySQL主备的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8CM%E7%BB%93%E6%9E%84"><span class="nav-text">双M结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E"><span class="nav-text">一主多从</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -613,7 +717,7 @@
               <span>2023</span>
               -
             
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Edward YC</a>
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Edward YC</a>
         </div>
         
             <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
