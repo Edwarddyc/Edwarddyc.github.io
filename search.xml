@@ -289,4 +289,29 @@
         <tag>MySQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AI 开发技法</title>
+    <url>/2026/01/20/AI-%E5%BC%80%E5%8F%91%E6%8A%80%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="总览">总览</h2>
+<p>本文档记录使用 LLM 的 AI 开发相关的技术总览，构建完整的 AI 开发流程。涉及到 LLM 的调用、基于 SpringAI 或者 LangChain4j 的具体 AI 开发。其中通过 Advisor、Prompt 和 RAG 来辅助和强化模型的能力。</p>
+<h2 id="AI-大模型接入">AI 大模型接入</h2>
+<h3 id="使用大模型的-2-种途径">使用大模型的 2 种途径</h3>
+<h4 id="1、云服务">1、云服务</h4>
+<p>直接使用云服务商在云端已经部署好的大模型服务，无需自己考虑基础设施（比如服务器、GPU 算力），特点：使用方便维护成本低，具有更完善的安全措施和合规保障。</p>
+<h4 id="2、自部署">2、自部署</h4>
+<p>开发者在本地或者私有云部署开源大模型，特点是数据安全，无网络延迟。</p>
+<h3 id="接入大模型的-3-种方式">接入大模型的 3 种方式</h3>
+<h4 id="1、AI-应用平台接入">1、AI 应用平台接入</h4>
+<p>国内比较著名且方便的平台有 <a class="link"   href="https://bailian.console.aliyun.com/" >阿里云百炼 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 和字节的 <a class="link"   href="https://www.volcengine.com/product/ark" >火山引擎 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 。这种一站式的大模型开发及应用构建平台提供了从模型调用到应用构建的全流程支持。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="image/AI-%E5%BC%80%E5%8F%91%E6%8A%80%E6%B3%95/1768893314800.png"
+                      alt="1768893314800"
+                ></p>
+]]></content>
+      <tags>
+        <tag>AI、JAVA</tag>
+      </tags>
+  </entry>
 </search>
