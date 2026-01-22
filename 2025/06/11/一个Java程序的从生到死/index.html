@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="在学习Java的时候，一个重点就是学习如何实现它如何实现”Write Once, Run anywhere”。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Comp">
+        <meta name="description" content="在学习Java的时候，一个重点就是学习如何实现它如何实现&quot;Write Once, Run anywhere&quot;。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个Java程序的从生到死">
 <meta property="og:url" content="http://example.com/2025/06/11/%E4%B8%80%E4%B8%AAJava%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BB%8E%E7%94%9F%E5%88%B0%E6%AD%BB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在学习Java的时候，一个重点就是学习如何实现它如何实现”Write Once, Run anywhere”。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Comp">
+<meta property="og:description" content="在学习Java的时候，一个重点就是学习如何实现它如何实现&quot;Write Once, Run anywhere&quot;。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-11T13:33:41.000Z">
 <meta property="article:modified_time" content="2025-06-22T03:53:48.026Z">
@@ -120,294 +120,253 @@
 
 
         <div class="main-content-header">
-            $logo-title-font-size = 2rem
-$desktop-search-icon-font-size = 1.5rem
-$navbar-bar-line-height = 2.5px
-$logo-image-box-width = 46px
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
 
-@import '../../common/variables'
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.navbar-container
-  font-family 'Chillax-Variable', sans-serif
-  width 100%
-  height 100%
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
-  padding-top $scroll-progress-bar-height
-  hover-style(
-    false,
-    0,
-    0
-  )
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
 
-  .navbar-content
-    position relative
-    height 100%
-    width $main-content-width
-    max-width $content-max-width
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    z-index $z-index-5
-    transition max-width 0.3s ease
+        </ul>
+    </div>
 
-    &.has-home-banner
-      max-width $content-max-width * 1.2
+    <div class="window-mask"></div>
 
-    +redefine-tablet()
-      width $main-content-width-tablet
+</header>
 
-    +redefine-mobile()
-      width $main-content-width-mobile
-
-    .left
-      display flex
-      align-items center
-      transform-origin left
-      transition-t('transform', '0', '0.2', 'linear')
-
-      .navbar-shrink &
-        transform scale(0.72)
-        transform-origin left
-
-      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
-        .logo-image
-          width $logo-image-box-width
-          height $logo-image-box-width
-          margin-right 8px
-
-          +redefine-tablet()
-            width: $logo-image-box-width * 0.9
-            height: $logo-image-box-width * 0.9
-
-          +redefine-mobile()
-            width: $logo-image-box-width * 0.8
-            height: $logo-image-box-width * 0.8
-
-          img
-            border-radius 6px
-            width 100%
-
-      .logo-title
-        font-size $logo-title-font-size
-        font-weight 520
-        // letter-spacing 1px
-        line-height 1
-        color var(--first-text-color)
-
-        h1
-          margin 0
-          font-size $logo-title-font-size
-          font-weight 520
-          //letter-spacing 1px
-          line-height 1
-          color var(--first-text-color)
-
-          +redefine-tablet()
-            font-size: $logo-title-font-size * 0.9
-
-          +redefine-mobile()
-            font-size: $logo-title-font-size * 0.8
-
-        +redefine-tablet()
-          font-size: $logo-title-font-size * 0.9
-
-        +redefine-mobile()
-          font-size: $logo-title-font-size * 0.8
-
-    .right
-      .desktop
-        .navbar-list
-          display flex
-          gap 24px
-          align-items center
-
-          +redefine-tablet()
-            display none
-
-          .navbar-item
-            float left
-            // padding 5px
-            position relative
-            font-size 1rem
-            font-weight 450
-            cursor pointer
-            color var(--default-text-color)
-
-            a
-              display block
-              padding 5px
-
-            a .fa-chevron-down
-              transform rotate(0deg)
-              transition transform 0.3s ease
-
-            &:hover a .fa-chevron-down
-              transform rotate(180deg)
-
-            &:hover .has-dropdown
-              &::after
-                display none !important
-
-            &:hover a, .active
-              &::after
-                content ''
-                position absolute
-                bottom -5px
-                left 50%
-                width 100%
-                height 2px
-                transform translateX(-50%)
-                border-radius $redefine-border-radius-large
-                background var(--primary-color)
-                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
-
-                .navbar-shrink &
-                  bottom -($navbar-shrink-height / 2 - 17)
-
-            &.search
-              font-size $desktop-search-icon-font-size
-              margin-left 26px
-
-              i
-                color var(--default-text-color)
-
-            .sub-menu
-              position absolute
-              right auto
-              left 50%
-              -webkit-transform translate(-50%, 0)
-              -o-transform translate(-50%, 0)
-              transform translate(-50%, 0)
-              margin-top 0px
-              width auto
-              text-align center
-              list-style none
-              padding 0 10px
-              border-radius $redefine-border-radius-large
-              // visibility hidden
-              max-height 0px
-              overflow hidden
-              transition-t('all', '0', '0.2', 'linear')
-
-              li a
-                white-space nowrap
-                color var(--default-text-color)
-                font-size 1rem
-                padding 3px 15px
-                display block
-                text-align center
-                border-radius 8px
-                transition-t('all', '0', '0.2', 'linear')
-
-                &:hover
-                  color var(--primary-color)
-                  background-color var(--third-background-color)
-
-        .navbar-list .navbar-item:hover .sub-menu
-          // visibility visible
-          max-height 500px
-          transition-t('all', '0', '0.2', 'ease')
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            5px
-          )
-
-      .mobile
-        display flex
-        justify-content space-between
-        align-items center
-
-        .icon-item
-          display none
-          position relative
-          cursor pointer
-          font-size 18px
-          margin-left 12px
-          width 20px
-          height 20px
-          color var(--default-text-color)
-
-          i
-            color var(--default-text-color)
-
-          &:first-child
-            margin-left 0
-
-          +redefine-tablet()
-            display flex
-            justify-content center
-            align-items center
-
-        .navbar-bar
-          .navbar-bar-middle
-            width 18px
-            height $navbar-bar-line-height
-            position relative
-            background var(--default-text-color)
-
-            .navbar-drawer-show &
-              background transparent
-
-            &::before, &::after
-              content ''
-              position absolute
-              left 0
-              width 100%
-              height $navbar-bar-line-height
-              background var(--default-text-color)
-              transition-t('transform', '0', '0.38', 'ease')
-
-            &::before
-              top -6px
-
-              .navbar-drawer-show &
-                transform translateY(6px) rotate(45deg)
-
-            &::after
-              bottom -6px
-
-              .navbar-drawer-show &
-                transform translateY(-6px) rotate(-45deg)
-
-  .navbar-drawer
-    padding $navbar-height 0 20px 0
-    transform scaleY(0)
-    transform-origin top
-    z-index $z-index-2
-    opacity 0
-    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
-
-    .navbar-drawer-show &
-      transform scaleY(1)
-      opacity 1
-
-  .window-mask
-    position absolute
-    top 0
-    width 100%
-    height 100vh
-    background rgba(0, 0, 0, 0.4)
-    z-index $z-index-1
-    visibility hidden
-    opacity 0
-    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
-
-    .navbar-drawer-show &
-      visibility visible
-      opacity 1
-
-.navbar-drawer-show
-  overflow hidden
 
         </div>
 
@@ -499,33 +458,39 @@ $logo-image-box-width = 46px
 
 
         <div class="article-content markdown-body">
-            <p>在学习Java的时候，一个重点就是学习如何实现它如何实现”Write Once, Run anywhere”。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Compiler即时编译、Garbage Collect垃圾回收，Java运行时数据区的VM stack、方法区、程序计数器PC等等细节的实现。我力图在整理Java程序运行的流程中，梳理好从javac到JVM中的每一步细节，可以将知识点连接起来。</p>
-<h2 id="前端编译：-java到-class"><a href="#前端编译：-java到-class" class="headerlink" title="前端编译：.java到.class"></a>前端编译：.java到.class</h2><p>javac(JDK内部，JVM外部)</p>
+            <p>在学习Java的时候，一个重点就是学习如何实现它如何实现&quot;Write Once, Run anywhere&quot;。而这其中的一个重点就是计算机运行Java的流程，其如何将.java文件转换成.class文件再到计算机底层CPU可以识别的二进制文件。在第一个转换中，涉及到了JDK中的javac组件，属于Java前端编译中的一部分；在第二个转换中，则涉及到了JVM的诸多细节，如执行引擎中的JIT Compiler即时编译、Garbage Collect垃圾回收，Java运行时数据区的VM stack、方法区、程序计数器PC等等细节的实现。我力图在整理Java程序运行的流程中，梳理好从javac到JVM中的每一步细节，可以将知识点连接起来。</p>
+<h2 id="前端编译：-java到-class">前端编译：.java到.class</h2>
+<p>javac(JDK内部，JVM外部)</p>
 <p>对于JVM来说，实际的输入是字节码文件，但是我们写好的是Java文件。所以我们需要通过javac来讲Java文件编译成字节码文件然后再传入JVM中。具体的步骤包括如下：程序源码-&gt;词法分析-&gt;单词流-&gt;语法分析（将Token流转换成AST）-&gt;抽象语法树-&gt;语义分析器-&gt;注解抽象语法树-&gt;字节码生成器-&gt;JVM字节码，这称之为前端编译。</p>
 <p>抽象语法树（AST）：反映代码的语法结构（如运算符、变量名、表达式嵌套等），由语法分析阶段生成。</p>
-<p>注解抽象语法树：在原始AST的基础上，通过语义分析添加了语义信息，例如：变量&#x2F;方法的数据类型（如b是int还是String）、符号的作用域（如b是局部变量还是类字段）、表达式的合法性（如b + 1是否类型兼容）。</p>
+<p>注解抽象语法树：在原始AST的基础上，通过语义分析添加了语义信息，例如：变量/方法的数据类型（如b是int还是String）、符号的作用域（如b是局部变量还是类字段）、表达式的合法性（如b + 1是否类型兼容）。</p>
 <ul>
 <li><strong>词法分析</strong>：解决“是什么单词”的问题。</li>
 <li><strong>语法分析</strong>：解决“单词如何组合”的问题。</li>
 <li><strong>语义分析</strong>：解决“组合是否有意义”的问题。</li>
 </ul>
-<h2 id="JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令"><a href="#JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令" class="headerlink" title="JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令"></a>JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令</h2><p>（JVM内部）</p>
+<h2 id="JVM编译阶段（解释器-JIT-Compiler）：-class到机器指令">JVM编译阶段（解释器&amp;JIT Compiler）：.class到机器指令</h2>
+<p>（JVM内部）</p>
 <p>JVM阶段的输入是字节码文件而非源文件，这种设置就是为了“write once, run anywhere”。因为如C语言，因为需要设计到一些具体的函数与操作系统相关，不同的操作系统对应的函数就需要修改。而对于字节码来说，JVM的存在可以承担起对于每个平台的适配性。解释器就是将字节码文件中的内容“翻译”为对应平台的本地机器指令去执行。</p>
 <p>解释器承担了主要的编译工作，而JIT Compiler是一种针对hotspot的优化机制，所以说Java是一种半解释半编译的语言。</p>
-<h3 id="解释器的分类"><a href="#解释器的分类" class="headerlink" title="解释器的分类"></a>解释器的分类</h3><p>字节码解释器 &amp; 模板解释器</p>
+<h3 id="解释器的分类">解释器的分类</h3>
+<p>字节码解释器 &amp; 模板解释器</p>
 <p>字节码解释器：需要在执行代码时通过纯软件代码模拟字节码的执行，效率十分低；</p>
 <p>模板解释器：每一条字节码和一个模板函数相关联，模板函数中直接产生这条字节码执行时的机器码，能提高性能。</p>
 <ul>
-<li>Hotspot中，解释器主要有Intepreter模块和Code模块。<ul>
+<li>Hotspot中，解释器主要有Intepreter模块和Code模块。
+<ul>
 <li>Intepreter模块：实现了解释器的核心功能；</li>
 <li>Code模块：用于管理Hotspot在运行时生成的本地机器指令。</li>
 </ul>
 </li>
 </ul>
-<h3 id="JIT-Compiler"><a href="#JIT-Compiler" class="headerlink" title="JIT Compiler"></a>JIT Compiler</h3><p>JIT编译器，Just In Time Compiler，又名即时编译器。根据它，JVM可将源代码直接编译为和本地机器平台相关的机器语言指令。</p>
+<h3 id="JIT-Compiler">JIT Compiler</h3>
+<p>JIT编译器，Just In Time Compiler，又名即时编译器。根据它，JVM可将源代码直接编译为和本地机器平台相关的机器语言指令。</p>
 <p>Hotspot虚拟机采用二者并存的方式，在jvm执行过程中，二者相互协助，取长补短。在jvm启动的时候，解释器先发挥作用，随着程序运行时间的推移，即时编译器发挥作用，根据热点检测功能，将有价值的字节码编译为本地机器指令，以换取更高的执行效率。</p>
 <p>通过jconsole的vm模块可以看到使用JIT Compiler的情况。</p>
-<h3 id="后端编译优化"><a href="#后端编译优化" class="headerlink" title="后端编译优化"></a>后端编译优化</h3><p>Hotspot code “热点代码”：当虚拟机发现某个方法或代码块的运行特别频繁，就会被认为是热点代码。在运行时，虚拟机会把这些代码编译为本地机器码，并尽可能地优化。</p>
+<h3 id="后端编译优化">后端编译优化</h3>
+<p>Hotspot code “热点代码”：当虚拟机发现某个方法或代码块的运行特别频繁，就会被认为是热点代码。在运行时，虚拟机会把这些代码编译为本地机器码，并尽可能地优化。</p>
 
         </div>
 

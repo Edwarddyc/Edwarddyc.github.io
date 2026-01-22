@@ -120,294 +120,253 @@
 
 
         <div class="main-content-header">
-            $logo-title-font-size = 2rem
-$desktop-search-icon-font-size = 1.5rem
-$navbar-bar-line-height = 2.5px
-$logo-image-box-width = 46px
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
 
-@import '../../common/variables'
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.navbar-container
-  font-family 'Chillax-Variable', sans-serif
-  width 100%
-  height 100%
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
-  padding-top $scroll-progress-bar-height
-  hover-style(
-    false,
-    0,
-    0
-  )
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
 
-  .navbar-content
-    position relative
-    height 100%
-    width $main-content-width
-    max-width $content-max-width
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    z-index $z-index-5
-    transition max-width 0.3s ease
+        </ul>
+    </div>
 
-    &.has-home-banner
-      max-width $content-max-width * 1.2
+    <div class="window-mask"></div>
 
-    +redefine-tablet()
-      width $main-content-width-tablet
+</header>
 
-    +redefine-mobile()
-      width $main-content-width-mobile
-
-    .left
-      display flex
-      align-items center
-      transform-origin left
-      transition-t('transform', '0', '0.2', 'linear')
-
-      .navbar-shrink &
-        transform scale(0.72)
-        transform-origin left
-
-      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
-        .logo-image
-          width $logo-image-box-width
-          height $logo-image-box-width
-          margin-right 8px
-
-          +redefine-tablet()
-            width: $logo-image-box-width * 0.9
-            height: $logo-image-box-width * 0.9
-
-          +redefine-mobile()
-            width: $logo-image-box-width * 0.8
-            height: $logo-image-box-width * 0.8
-
-          img
-            border-radius 6px
-            width 100%
-
-      .logo-title
-        font-size $logo-title-font-size
-        font-weight 520
-        // letter-spacing 1px
-        line-height 1
-        color var(--first-text-color)
-
-        h1
-          margin 0
-          font-size $logo-title-font-size
-          font-weight 520
-          //letter-spacing 1px
-          line-height 1
-          color var(--first-text-color)
-
-          +redefine-tablet()
-            font-size: $logo-title-font-size * 0.9
-
-          +redefine-mobile()
-            font-size: $logo-title-font-size * 0.8
-
-        +redefine-tablet()
-          font-size: $logo-title-font-size * 0.9
-
-        +redefine-mobile()
-          font-size: $logo-title-font-size * 0.8
-
-    .right
-      .desktop
-        .navbar-list
-          display flex
-          gap 24px
-          align-items center
-
-          +redefine-tablet()
-            display none
-
-          .navbar-item
-            float left
-            // padding 5px
-            position relative
-            font-size 1rem
-            font-weight 450
-            cursor pointer
-            color var(--default-text-color)
-
-            a
-              display block
-              padding 5px
-
-            a .fa-chevron-down
-              transform rotate(0deg)
-              transition transform 0.3s ease
-
-            &:hover a .fa-chevron-down
-              transform rotate(180deg)
-
-            &:hover .has-dropdown
-              &::after
-                display none !important
-
-            &:hover a, .active
-              &::after
-                content ''
-                position absolute
-                bottom -5px
-                left 50%
-                width 100%
-                height 2px
-                transform translateX(-50%)
-                border-radius $redefine-border-radius-large
-                background var(--primary-color)
-                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
-
-                .navbar-shrink &
-                  bottom -($navbar-shrink-height / 2 - 17)
-
-            &.search
-              font-size $desktop-search-icon-font-size
-              margin-left 26px
-
-              i
-                color var(--default-text-color)
-
-            .sub-menu
-              position absolute
-              right auto
-              left 50%
-              -webkit-transform translate(-50%, 0)
-              -o-transform translate(-50%, 0)
-              transform translate(-50%, 0)
-              margin-top 0px
-              width auto
-              text-align center
-              list-style none
-              padding 0 10px
-              border-radius $redefine-border-radius-large
-              // visibility hidden
-              max-height 0px
-              overflow hidden
-              transition-t('all', '0', '0.2', 'linear')
-
-              li a
-                white-space nowrap
-                color var(--default-text-color)
-                font-size 1rem
-                padding 3px 15px
-                display block
-                text-align center
-                border-radius 8px
-                transition-t('all', '0', '0.2', 'linear')
-
-                &:hover
-                  color var(--primary-color)
-                  background-color var(--third-background-color)
-
-        .navbar-list .navbar-item:hover .sub-menu
-          // visibility visible
-          max-height 500px
-          transition-t('all', '0', '0.2', 'ease')
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            5px
-          )
-
-      .mobile
-        display flex
-        justify-content space-between
-        align-items center
-
-        .icon-item
-          display none
-          position relative
-          cursor pointer
-          font-size 18px
-          margin-left 12px
-          width 20px
-          height 20px
-          color var(--default-text-color)
-
-          i
-            color var(--default-text-color)
-
-          &:first-child
-            margin-left 0
-
-          +redefine-tablet()
-            display flex
-            justify-content center
-            align-items center
-
-        .navbar-bar
-          .navbar-bar-middle
-            width 18px
-            height $navbar-bar-line-height
-            position relative
-            background var(--default-text-color)
-
-            .navbar-drawer-show &
-              background transparent
-
-            &::before, &::after
-              content ''
-              position absolute
-              left 0
-              width 100%
-              height $navbar-bar-line-height
-              background var(--default-text-color)
-              transition-t('transform', '0', '0.38', 'ease')
-
-            &::before
-              top -6px
-
-              .navbar-drawer-show &
-                transform translateY(6px) rotate(45deg)
-
-            &::after
-              bottom -6px
-
-              .navbar-drawer-show &
-                transform translateY(-6px) rotate(-45deg)
-
-  .navbar-drawer
-    padding $navbar-height 0 20px 0
-    transform scaleY(0)
-    transform-origin top
-    z-index $z-index-2
-    opacity 0
-    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
-
-    .navbar-drawer-show &
-      transform scaleY(1)
-      opacity 1
-
-  .window-mask
-    position absolute
-    top 0
-    width 100%
-    height 100vh
-    background rgba(0, 0, 0, 0.4)
-    z-index $z-index-1
-    visibility hidden
-    opacity 0
-    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
-
-    .navbar-drawer-show &
-      visibility visible
-      opacity 1
-
-.navbar-drawer-show
-  overflow hidden
 
         </div>
 
@@ -475,7 +434,7 @@ $logo-image-box-width = 46px
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>641 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>645 Words</span>
         </span>
     
     
@@ -501,11 +460,19 @@ $logo-image-box-width = 46px
         <div class="article-content markdown-body">
             <p>机器学习常用于数据预处理、数据分析和数据挖掘之中。在今天主流的观念中，机器学习会被分为传统机器学习和深度学习两种，传统机器学习具有更好的可解释性，如针对回归问题的线性回归、针对分类问题的逻辑回归，树（KNN），支持向量机（SVM），还有一些聚类算法如K-Means，PCA，层次聚类（Hierarchical Clustering），关联规则等。而对于深度学习问题，则是基于很多层构建的如MLP，CNN（卷积层, Yolo），RNN（LSTM），Transformer(decoder, encoder, Bert, Chatgpt…)。</p>
 <p>在这篇文章中，重点记录和整理我对于机器学习的理解，以构建自己的知识网络。我分为Base和Advance两个部分，base部分讲解基础，Advance部分记录一些机器学习更高级的应用如Ensemble等。</p>
-<h2 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h2><p>在学习传统机器学习的时候，第一个概念是supervised learning、unsupervised learning和unsupervised learning，即监督学习、非监督学习和半监督学习。评判的标准是是否有标签（label），有标签就是supervised learning（用各项指标预测癌症，癌症是标签，各项指标是data，常用于预测或者分类），无标签（没有预定的答案，如可以用DBSCAN去发现社群关系，用PCA去降低数据维度，常用于预处理任务），还有半监督学习（强调利用少量标注数据+大量未标注数据进行训练，是一种针对成本节约而诞生的问题）</p>
-<p>同时，对于数据类型问题，常会面对两种数据类型，连续性数据如房屋面积、离散性数据如地理位置。对于连续性数据，常用的预处理方法是归一化（normalization&#x2F;standardization），具体有Min-max Scaling，Z-Score standarlization，Robust Scaling、Log Transform，Quanruke Normalization；而对于离散型数据，最著名的方法是One-hot Encoding（独热编码），除此以外还有序号编码（Ordinary Encoding），目标编码（Target Encoding）。</p>
-<h3 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h3><p>回归问题的应用是基于一些特征（data）去预测一个实例的具体数值（label），如可以基于周边的配套设施，房屋面积，地理位置信息等去预测房价。</p>
+<h2 id="Base">Base</h2>
+<p>在学习传统机器学习的时候，第一个概念是supervised learning、unsupervised learning和unsupervised learning，即监督学习、非监督学习和半监督学习。评判的标准是是否有标签（label），有标签就是supervised learning（用各项指标预测癌症，癌症是标签，各项指标是data，常用于预测或者分类），无标签（没有预定的答案，如可以用DBSCAN去发现社群关系，用PCA去降低数据维度，常用于预处理任务），还有半监督学习（强调利用少量标注数据+大量未标注数据进行训练，是一种针对成本节约而诞生的问题）</p>
+<p>同时，对于数据类型问题，常会面对两种数据类型，连续性数据如房屋面积、离散性数据如地理位置。对于连续性数据，常用的预处理方法是归一化（normalization/standardization），具体有Min-max Scaling，Z-Score standarlization，Robust Scaling、Log Transform，Quanruke Normalization；而对于离散型数据，最著名的方法是One-hot Encoding（独热编码），除此以外还有序号编码（Ordinary Encoding），目标编码（Target Encoding）。</p>
+<h3 id="Regression">Regression</h3>
+<p>回归问题的应用是基于一些特征（data）去预测一个实例的具体数值（label），如可以基于周边的配套设施，房屋面积，地理位置信息等去预测房价。</p>
 <p>在思考回归问题的时候，有一种思考方式是基于矩阵的角度思考然后直接通过矩阵运算得到系数，另外一种是最小二乘法去不断求解，是一种简单优化问题，即最小化Loss。</p>
-<h4 id="Linear-regression"><a href="#Linear-regression" class="headerlink" title="Linear regression"></a>Linear regression</h4><h4 id="Lasso"><a href="#Lasso" class="headerlink" title="Lasso"></a>Lasso</h4><h4 id="Ridge"><a href="#Ridge" class="headerlink" title="Ridge"></a>Ridge</h4><h4 id="Elastic-Net"><a href="#Elastic-Net" class="headerlink" title="Elastic - Net"></a>Elastic - Net</h4><h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><h2 id="Advance"><a href="#Advance" class="headerlink" title="Advance"></a>Advance</h2>
+<h4 id="Linear-regression">Linear regression</h4>
+<h4 id="Lasso">Lasso</h4>
+<h4 id="Ridge">Ridge</h4>
+<h4 id="Elastic-Net">Elastic - Net</h4>
+<h3 id="Classification">Classification</h3>
+<h2 id="Advance">Advance</h2>
+
         </div>
 
         

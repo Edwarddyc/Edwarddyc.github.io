@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="索引作用索引的出现是为了提高数据查询的效率，如同书的目录一样。 索引模型常见的索引模型有哈希表，有序数组和搜索树（B+树）。 InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。 特点：B+树是多路平衡查找树，适合磁">
+        <meta name="description" content="索引作用 索引的出现是为了提高数据查询的效率，如同书的目录一样。 索引模型 常见的索引模型有哈希表，有序数组和搜索树（B+树）。 InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。 特点：B+树是多路平衡查找树，适">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL索引优化">
 <meta property="og:url" content="http://example.com/2025/06/06/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="索引作用索引的出现是为了提高数据查询的效率，如同书的目录一样。 索引模型常见的索引模型有哈希表，有序数组和搜索树（B+树）。 InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。 特点：B+树是多路平衡查找树，适合磁">
+<meta property="og:description" content="索引作用 索引的出现是为了提高数据查询的效率，如同书的目录一样。 索引模型 常见的索引模型有哈希表，有序数组和搜索树（B+树）。 InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。 特点：B+树是多路平衡查找树，适">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-06T07:39:14.000Z">
 <meta property="article:modified_time" content="2025-06-11T08:59:32.417Z">
@@ -120,294 +120,253 @@
 
 
         <div class="main-content-header">
-            $logo-title-font-size = 2rem
-$desktop-search-icon-font-size = 1.5rem
-$navbar-bar-line-height = 2.5px
-$logo-image-box-width = 46px
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
 
-@import '../../common/variables'
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.navbar-container
-  font-family 'Chillax-Variable', sans-serif
-  width 100%
-  height 100%
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
-  padding-top $scroll-progress-bar-height
-  hover-style(
-    false,
-    0,
-    0
-  )
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
 
-  .navbar-content
-    position relative
-    height 100%
-    width $main-content-width
-    max-width $content-max-width
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    z-index $z-index-5
-    transition max-width 0.3s ease
+        </ul>
+    </div>
 
-    &.has-home-banner
-      max-width $content-max-width * 1.2
+    <div class="window-mask"></div>
 
-    +redefine-tablet()
-      width $main-content-width-tablet
+</header>
 
-    +redefine-mobile()
-      width $main-content-width-mobile
-
-    .left
-      display flex
-      align-items center
-      transform-origin left
-      transition-t('transform', '0', '0.2', 'linear')
-
-      .navbar-shrink &
-        transform scale(0.72)
-        transform-origin left
-
-      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
-        .logo-image
-          width $logo-image-box-width
-          height $logo-image-box-width
-          margin-right 8px
-
-          +redefine-tablet()
-            width: $logo-image-box-width * 0.9
-            height: $logo-image-box-width * 0.9
-
-          +redefine-mobile()
-            width: $logo-image-box-width * 0.8
-            height: $logo-image-box-width * 0.8
-
-          img
-            border-radius 6px
-            width 100%
-
-      .logo-title
-        font-size $logo-title-font-size
-        font-weight 520
-        // letter-spacing 1px
-        line-height 1
-        color var(--first-text-color)
-
-        h1
-          margin 0
-          font-size $logo-title-font-size
-          font-weight 520
-          //letter-spacing 1px
-          line-height 1
-          color var(--first-text-color)
-
-          +redefine-tablet()
-            font-size: $logo-title-font-size * 0.9
-
-          +redefine-mobile()
-            font-size: $logo-title-font-size * 0.8
-
-        +redefine-tablet()
-          font-size: $logo-title-font-size * 0.9
-
-        +redefine-mobile()
-          font-size: $logo-title-font-size * 0.8
-
-    .right
-      .desktop
-        .navbar-list
-          display flex
-          gap 24px
-          align-items center
-
-          +redefine-tablet()
-            display none
-
-          .navbar-item
-            float left
-            // padding 5px
-            position relative
-            font-size 1rem
-            font-weight 450
-            cursor pointer
-            color var(--default-text-color)
-
-            a
-              display block
-              padding 5px
-
-            a .fa-chevron-down
-              transform rotate(0deg)
-              transition transform 0.3s ease
-
-            &:hover a .fa-chevron-down
-              transform rotate(180deg)
-
-            &:hover .has-dropdown
-              &::after
-                display none !important
-
-            &:hover a, .active
-              &::after
-                content ''
-                position absolute
-                bottom -5px
-                left 50%
-                width 100%
-                height 2px
-                transform translateX(-50%)
-                border-radius $redefine-border-radius-large
-                background var(--primary-color)
-                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
-
-                .navbar-shrink &
-                  bottom -($navbar-shrink-height / 2 - 17)
-
-            &.search
-              font-size $desktop-search-icon-font-size
-              margin-left 26px
-
-              i
-                color var(--default-text-color)
-
-            .sub-menu
-              position absolute
-              right auto
-              left 50%
-              -webkit-transform translate(-50%, 0)
-              -o-transform translate(-50%, 0)
-              transform translate(-50%, 0)
-              margin-top 0px
-              width auto
-              text-align center
-              list-style none
-              padding 0 10px
-              border-radius $redefine-border-radius-large
-              // visibility hidden
-              max-height 0px
-              overflow hidden
-              transition-t('all', '0', '0.2', 'linear')
-
-              li a
-                white-space nowrap
-                color var(--default-text-color)
-                font-size 1rem
-                padding 3px 15px
-                display block
-                text-align center
-                border-radius 8px
-                transition-t('all', '0', '0.2', 'linear')
-
-                &:hover
-                  color var(--primary-color)
-                  background-color var(--third-background-color)
-
-        .navbar-list .navbar-item:hover .sub-menu
-          // visibility visible
-          max-height 500px
-          transition-t('all', '0', '0.2', 'ease')
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            5px
-          )
-
-      .mobile
-        display flex
-        justify-content space-between
-        align-items center
-
-        .icon-item
-          display none
-          position relative
-          cursor pointer
-          font-size 18px
-          margin-left 12px
-          width 20px
-          height 20px
-          color var(--default-text-color)
-
-          i
-            color var(--default-text-color)
-
-          &:first-child
-            margin-left 0
-
-          +redefine-tablet()
-            display flex
-            justify-content center
-            align-items center
-
-        .navbar-bar
-          .navbar-bar-middle
-            width 18px
-            height $navbar-bar-line-height
-            position relative
-            background var(--default-text-color)
-
-            .navbar-drawer-show &
-              background transparent
-
-            &::before, &::after
-              content ''
-              position absolute
-              left 0
-              width 100%
-              height $navbar-bar-line-height
-              background var(--default-text-color)
-              transition-t('transform', '0', '0.38', 'ease')
-
-            &::before
-              top -6px
-
-              .navbar-drawer-show &
-                transform translateY(6px) rotate(45deg)
-
-            &::after
-              bottom -6px
-
-              .navbar-drawer-show &
-                transform translateY(-6px) rotate(-45deg)
-
-  .navbar-drawer
-    padding $navbar-height 0 20px 0
-    transform scaleY(0)
-    transform-origin top
-    z-index $z-index-2
-    opacity 0
-    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
-
-    .navbar-drawer-show &
-      transform scaleY(1)
-      opacity 1
-
-  .window-mask
-    position absolute
-    top 0
-    width 100%
-    height 100vh
-    background rgba(0, 0, 0, 0.4)
-    z-index $z-index-1
-    visibility hidden
-    opacity 0
-    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
-
-    .navbar-drawer-show &
-      visibility visible
-      opacity 1
-
-.navbar-drawer-show
-  overflow hidden
 
         </div>
 
@@ -499,12 +458,20 @@ $logo-image-box-width = 46px
 
 
         <div class="article-content markdown-body">
-            <h2 id="索引作用"><a href="#索引作用" class="headerlink" title="索引作用"></a>索引作用</h2><p>索引的出现是为了提高数据查询的效率，如同书的目录一样。</p>
-<h2 id="索引模型"><a href="#索引模型" class="headerlink" title="索引模型"></a>索引模型</h2><p>常见的索引模型有哈希表，有序数组和搜索树（B+树）。</p>
+            <h2 id="索引作用">索引作用</h2>
+<p>索引的出现是为了提高数据查询的效率，如同书的目录一样。</p>
+<h2 id="索引模型">索引模型</h2>
+<p>常见的索引模型有哈希表，有序数组和搜索树（B+树）。</p>
 <p>InnoDB的索引由B+树实现，其中主键树的叶子节点为数据，非叶子节点为主键的具体值。普通索引的叶子节点是具体的主键值。同时，InnoDB的自适应哈希索引（InnoDB hash index）对频繁访问的索引页自动在内存中建立哈希索引。</p>
 <p>特点：B+树是多路平衡查找树，适合磁盘存储。支持等值查询，同时叶子节点通过指针连接，支持高效的范围查询。</p>
 <p>Memory的索引实现由哈希表实现。</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="唯一性索引和普通索引的选择（change-buffer的优化机制）"><a href="#唯一性索引和普通索引的选择（change-buffer的优化机制）" class="headerlink" title="唯一性索引和普通索引的选择（change buffer的优化机制）"></a>唯一性索引和普通索引的选择（change buffer的优化机制）</h3><h3 id="索引选错问题（优化层的工作原理）"><a href="#索引选错问题（优化层的工作原理）" class="headerlink" title="索引选错问题（优化层的工作原理）"></a>索引选错问题（优化层的工作原理）</h3>
+<h2 id="覆盖索引">覆盖索引</h2>
+<h3 id="最左前缀原则">最左前缀原则</h3>
+<h3 id="索引下推">索引下推</h3>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="唯一性索引和普通索引的选择（change-buffer的优化机制）">唯一性索引和普通索引的选择（change buffer的优化机制）</h3>
+<h3 id="索引选错问题（优化层的工作原理）">索引选错问题（优化层的工作原理）</h3>
+
         </div>
 
         

@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="事务事务的定义事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance) VA">
+        <meta name="description" content="事务 事务的定义 事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL事务隔离">
 <meta property="og:url" content="http://example.com/2025/06/06/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="事务事务的定义事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance) VA">
+<meta property="og:description" content="事务 事务的定义 事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。 12345678910111213-- 开始事务START TRANSACTION;  -- 或者 BEGIN-- 执行SQL语句INSERT INTO accounts (user_id, balance)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-06T06:11:54.000Z">
 <meta property="article:modified_time" content="2025-07-05T04:32:48.956Z">
@@ -120,294 +120,253 @@
 
 
         <div class="main-content-header">
-            $logo-title-font-size = 2rem
-$desktop-search-icon-font-size = 1.5rem
-$navbar-bar-line-height = 2.5px
-$logo-image-box-width = 46px
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
 
-@import '../../common/variables'
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.navbar-container
-  font-family 'Chillax-Variable', sans-serif
-  width 100%
-  height 100%
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
-  padding-top $scroll-progress-bar-height
-  hover-style(
-    false,
-    0,
-    0
-  )
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
 
-  .navbar-content
-    position relative
-    height 100%
-    width $main-content-width
-    max-width $content-max-width
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    z-index $z-index-5
-    transition max-width 0.3s ease
+        </ul>
+    </div>
 
-    &.has-home-banner
-      max-width $content-max-width * 1.2
+    <div class="window-mask"></div>
 
-    +redefine-tablet()
-      width $main-content-width-tablet
+</header>
 
-    +redefine-mobile()
-      width $main-content-width-mobile
-
-    .left
-      display flex
-      align-items center
-      transform-origin left
-      transition-t('transform', '0', '0.2', 'linear')
-
-      .navbar-shrink &
-        transform scale(0.72)
-        transform-origin left
-
-      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
-        .logo-image
-          width $logo-image-box-width
-          height $logo-image-box-width
-          margin-right 8px
-
-          +redefine-tablet()
-            width: $logo-image-box-width * 0.9
-            height: $logo-image-box-width * 0.9
-
-          +redefine-mobile()
-            width: $logo-image-box-width * 0.8
-            height: $logo-image-box-width * 0.8
-
-          img
-            border-radius 6px
-            width 100%
-
-      .logo-title
-        font-size $logo-title-font-size
-        font-weight 520
-        // letter-spacing 1px
-        line-height 1
-        color var(--first-text-color)
-
-        h1
-          margin 0
-          font-size $logo-title-font-size
-          font-weight 520
-          //letter-spacing 1px
-          line-height 1
-          color var(--first-text-color)
-
-          +redefine-tablet()
-            font-size: $logo-title-font-size * 0.9
-
-          +redefine-mobile()
-            font-size: $logo-title-font-size * 0.8
-
-        +redefine-tablet()
-          font-size: $logo-title-font-size * 0.9
-
-        +redefine-mobile()
-          font-size: $logo-title-font-size * 0.8
-
-    .right
-      .desktop
-        .navbar-list
-          display flex
-          gap 24px
-          align-items center
-
-          +redefine-tablet()
-            display none
-
-          .navbar-item
-            float left
-            // padding 5px
-            position relative
-            font-size 1rem
-            font-weight 450
-            cursor pointer
-            color var(--default-text-color)
-
-            a
-              display block
-              padding 5px
-
-            a .fa-chevron-down
-              transform rotate(0deg)
-              transition transform 0.3s ease
-
-            &:hover a .fa-chevron-down
-              transform rotate(180deg)
-
-            &:hover .has-dropdown
-              &::after
-                display none !important
-
-            &:hover a, .active
-              &::after
-                content ''
-                position absolute
-                bottom -5px
-                left 50%
-                width 100%
-                height 2px
-                transform translateX(-50%)
-                border-radius $redefine-border-radius-large
-                background var(--primary-color)
-                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
-
-                .navbar-shrink &
-                  bottom -($navbar-shrink-height / 2 - 17)
-
-            &.search
-              font-size $desktop-search-icon-font-size
-              margin-left 26px
-
-              i
-                color var(--default-text-color)
-
-            .sub-menu
-              position absolute
-              right auto
-              left 50%
-              -webkit-transform translate(-50%, 0)
-              -o-transform translate(-50%, 0)
-              transform translate(-50%, 0)
-              margin-top 0px
-              width auto
-              text-align center
-              list-style none
-              padding 0 10px
-              border-radius $redefine-border-radius-large
-              // visibility hidden
-              max-height 0px
-              overflow hidden
-              transition-t('all', '0', '0.2', 'linear')
-
-              li a
-                white-space nowrap
-                color var(--default-text-color)
-                font-size 1rem
-                padding 3px 15px
-                display block
-                text-align center
-                border-radius 8px
-                transition-t('all', '0', '0.2', 'linear')
-
-                &:hover
-                  color var(--primary-color)
-                  background-color var(--third-background-color)
-
-        .navbar-list .navbar-item:hover .sub-menu
-          // visibility visible
-          max-height 500px
-          transition-t('all', '0', '0.2', 'ease')
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            5px
-          )
-
-      .mobile
-        display flex
-        justify-content space-between
-        align-items center
-
-        .icon-item
-          display none
-          position relative
-          cursor pointer
-          font-size 18px
-          margin-left 12px
-          width 20px
-          height 20px
-          color var(--default-text-color)
-
-          i
-            color var(--default-text-color)
-
-          &:first-child
-            margin-left 0
-
-          +redefine-tablet()
-            display flex
-            justify-content center
-            align-items center
-
-        .navbar-bar
-          .navbar-bar-middle
-            width 18px
-            height $navbar-bar-line-height
-            position relative
-            background var(--default-text-color)
-
-            .navbar-drawer-show &
-              background transparent
-
-            &::before, &::after
-              content ''
-              position absolute
-              left 0
-              width 100%
-              height $navbar-bar-line-height
-              background var(--default-text-color)
-              transition-t('transform', '0', '0.38', 'ease')
-
-            &::before
-              top -6px
-
-              .navbar-drawer-show &
-                transform translateY(6px) rotate(45deg)
-
-            &::after
-              bottom -6px
-
-              .navbar-drawer-show &
-                transform translateY(-6px) rotate(-45deg)
-
-  .navbar-drawer
-    padding $navbar-height 0 20px 0
-    transform scaleY(0)
-    transform-origin top
-    z-index $z-index-2
-    opacity 0
-    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
-
-    .navbar-drawer-show &
-      transform scaleY(1)
-      opacity 1
-
-  .window-mask
-    position absolute
-    top 0
-    width 100%
-    height 100vh
-    background rgba(0, 0, 0, 0.4)
-    z-index $z-index-1
-    visibility hidden
-    opacity 0
-    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
-
-    .navbar-drawer-show &
-      visibility visible
-      opacity 1
-
-.navbar-drawer-show
-  overflow hidden
 
         </div>
 
@@ -499,30 +458,36 @@ $logo-image-box-width = 46px
 
 
         <div class="article-content markdown-body">
-            <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="事务的定义"><a href="#事务的定义" class="headerlink" title="事务的定义"></a>事务的定义</h2><p>事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。</p>
+            <h1>事务</h1>
+<h2 id="事务的定义">事务的定义</h2>
+<p>事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全部执行成功，要么全部不执行，保证数据库从一个一致的状态转变为另一个一致状态。核心目的：保证并发程序的顺利执行。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- 开始事务</span><br><span class="line">START TRANSACTION;  -- 或者 BEGIN</span><br><span class="line"></span><br><span class="line">-- 执行SQL语句</span><br><span class="line">INSERT INTO accounts (user_id, balance) VALUES (1, 1000);</span><br><span class="line">UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;</span><br><span class="line">UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;</span><br><span class="line"></span><br><span class="line">-- 提交事务</span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">-- 或者回滚事务</span><br><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="事务的基本特性-ACID"><a href="#事务的基本特性-ACID" class="headerlink" title="事务的基本特性 ACID"></a>事务的基本特性 ACID</h2><ul>
+<h2 id="事务的基本特性-ACID">事务的基本特性 ACID</h2>
+<ul>
 <li>A 原子性：保证事务中的所有操作要么全部执行，要么全部不执行；</li>
 <li>C 一致性：事务执行前后，数据库从一个一致状态转换为另一个一致状态；</li>
 <li>I 隔离性：多个事务并发执行的时候，事务之间互不影响；</li>
 <li>D 持久性：事务一旦提交，结果是永久的。</li>
 </ul>
 <p>有一种角度思考事务的基本特性，就是通过事务的原子性，隔离性和持久性去实现事务的一致性。</p>
-<h2 id="事务的隔离性"><a href="#事务的隔离性" class="headerlink" title="事务的隔离性"></a>事务的隔离性</h2><p>在涉及到事务的隔离性上时，首先要明白为什么需要隔离性。因为当多个事务并发执行的时候，容易出现以下问题：</p>
+<h2 id="事务的隔离性">事务的隔离性</h2>
+<p>在涉及到事务的隔离性上时，首先要明白为什么需要隔离性。因为当多个事务并发执行的时候，容易出现以下问题：</p>
 <ul>
 <li>脏读：指一个事务可以读到其他事务未提交的修改（修改问题）；</li>
 <li>不可重复读：指一个事务重复读同一个记录时，前后内容不一致（修改问题）；</li>
 <li>幻读：指一个事务重复读同一个记录时，前后数量不一致（插入问题）；</li>
 </ul>
-<h2 id="事务隔离级别的具体定义"><a href="#事务隔离级别的具体定义" class="headerlink" title="事务隔离级别的具体定义"></a>事务隔离级别的具体定义</h2><p>事务的隔离级别由低到高为：读未提交，读已提交，可重复读，串行化。随着事务的隔离级别越来越高，事务的执行效率也越来越低。</p>
+<h2 id="事务隔离级别的具体定义">事务隔离级别的具体定义</h2>
+<p>事务的隔离级别由低到高为：读未提交，读已提交，可重复读，串行化。随着事务的隔离级别越来越高，事务的执行效率也越来越低。</p>
 <ul>
 <li>读未提交：一个事务可以读取另一个事务未提交的修改；</li>
 <li>读已提交：一个事务可以读取另一个事务已提交的修改；</li>
 <li>可重复读：一个事务执行过程中看到的数据总是和启动时的数据保持一致；</li>
-<li>串行化：对于同一行记录，读会加读锁，写会加写锁。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完才能开始执行。<ul>
-<li>串行化下锁的具体规则<ul>
-<li>读锁（共享锁&#x2F;S锁）与写锁（排他锁&#x2F;X锁）会冲突</li>
+<li>串行化：对于同一行记录，读会加读锁，写会加写锁。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完才能开始执行。
+<ul>
+<li>串行化下锁的具体规则
+<ul>
+<li>读锁（共享锁/S锁）与写锁（排他锁/X锁）会冲突</li>
 <li>读锁与读锁不会冲突</li>
 <li>写锁与写锁会冲突</li>
 </ul>
@@ -530,21 +495,30 @@ $logo-image-box-width = 46px
 </ul>
 </li>
 </ul>
-<h2 id="事务的具体实现"><a href="#事务的具体实现" class="headerlink" title="事务的具体实现"></a>事务的具体实现</h2><p>首先，事务的具体实现依靠的是执行引擎InnoDB，它实现了多种锁和MVCC来应对并发问题时的事务隔离性问题。</p>
-<h3 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h3><p>在事务的可重复读的隔离条件下，由数据库的多版本并发控制（MVCC）来支持。MVCC类似于一种视图概念，是在事务启动的时候针对整个库的一种快照。InnoDB 里面每个事务有一个唯一的事务 ID，叫作 transaction id。它是在事务开始的时候向 InnoDB 的事务系统申请的，是按申请顺序严格递增的。而每行数据也都是有多个版本的。每次事务更新数据的时候，都会生成一个新的数据版本，并且把 transaction id 赋值给这个数据版本的事务 ID，记为 row trx_id。同时，旧的数据版本要保留，并且在新的数据版本中，能够有信息可以直接拿到它。</p>
-<p>按照可重复读的定义，一个事务启动的时候，能够看到所有已经提交的事务结果。但是之后，这个事务执行期间，其他事务的更新对它不可见。<br>因此，一个事务只需要在启动的时候声明说，“以我启动的时刻为准，如果一个数据版本是在我启动之前生成的，就认；如果是我启动以后才生成的，我就不认，我必须要找到它的上一个版本”。（根据undo log回滚）</p>
-<p>InnoDB为每个事务在启动的时候构建了一个数组，用来保存这个事务在启动瞬间，当前正在“活跃”的所有事务ID。数组里面事务 ID 的最小值记为低水位，当前系统里面已经创建过的事务 ID 的最大值加 1 记为高水位。<br>这个视图数组和高水位，就组成了当前事务的一致性视图（read-view）。</p>
+<h2 id="事务的具体实现">事务的具体实现</h2>
+<p>首先，事务的具体实现依靠的是执行引擎InnoDB，它实现了多种锁和MVCC来应对并发问题时的事务隔离性问题。</p>
+<h3 id="MVCC">MVCC</h3>
+<p>在事务的可重复读的隔离条件下，由数据库的多版本并发控制（MVCC）来支持。MVCC类似于一种视图概念，是在事务启动的时候针对整个库的一种快照。InnoDB 里面每个事务有一个唯一的事务 ID，叫作 transaction id。它是在事务开始的时候向 InnoDB 的事务系统申请的，是按申请顺序严格递增的。而每行数据也都是有多个版本的。每次事务更新数据的时候，都会生成一个新的数据版本，并且把 transaction id 赋值给这个数据版本的事务 ID，记为 row trx_id。同时，旧的数据版本要保留，并且在新的数据版本中，能够有信息可以直接拿到它。</p>
+<p>按照可重复读的定义，一个事务启动的时候，能够看到所有已经提交的事务结果。但是之后，这个事务执行期间，其他事务的更新对它不可见。<br>
+因此，一个事务只需要在启动的时候声明说，“以我启动的时刻为准，如果一个数据版本是在我启动之前生成的，就认；如果是我启动以后才生成的，我就不认，我必须要找到它的上一个版本”。（根据undo log回滚）</p>
+<p>InnoDB为每个事务在启动的时候构建了一个数组，用来保存这个事务在启动瞬间，当前正在“活跃”的所有事务ID。数组里面事务 ID 的最小值记为低水位，当前系统里面已经创建过的事务 ID 的最大值加 1 记为高水位。<br>
+这个视图数组和高水位，就组成了当前事务的一致性视图（read-view）。</p>
 <p>InnoDB 利用了“所有数据都有多个版本”的这个特性，实现了“秒级创建快照”的能力。</p>
-<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><p>MySQL里的锁大致可以分为全局锁、表锁和行锁。</p>
-<h2 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h2><p>全局锁就是对整个数据库实例加锁。MySQL 提供了一个加全局读锁的方法，命令是 Flush tables with read lock (FTWRL)。当你需要让整个库处于只读状态的时候，可以使用这个命令，之后其他线程的以下语句会被阻塞：数据更新语句（数据的增删改）、数据定义语句（包括建表、修改表结构等）和更新类事务的提交语句。</p>
+<h1>锁</h1>
+<p>MySQL里的锁大致可以分为全局锁、表锁和行锁。</p>
+<h2 id="全局锁">全局锁</h2>
+<p>全局锁就是对整个数据库实例加锁。MySQL 提供了一个加全局读锁的方法，命令是 Flush tables with read lock (FTWRL)。当你需要让整个库处于只读状态的时候，可以使用这个命令，之后其他线程的以下语句会被阻塞：数据更新语句（数据的增删改）、数据定义语句（包括建表、修改表结构等）和更新类事务的提交语句。</p>
 <p><strong>应用场景</strong>：全库逻辑备份（通过FTWRL来确保数据库不会被其他线程修改，此时的数据库是只读的状态）</p>
 <p>全库逻辑备份的方法二：在可重复读隔离级别下开启一个事务（拿到一致性视图，MVCC）-（mysqldump官方自带的逻辑备份工具，使用参数-single-transaction）。</p>
 <p>全库逻辑备份的方法三：将数据库设置为readonly（不过不建议这样做，因为通常会依赖数据库是否是readonly来判断是主库还是备库，同时应对异常处理机制上也有差异，FTWRL会在异常后恢复，但是readonly会保持只读状态）</p>
-<h2 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h2><p>MySQL里面表级锁有两种：一种是表锁，另一种是MDL（meta data lock）。</p>
+<h2 id="表级锁">表级锁</h2>
+<p>MySQL里面表级锁有两种：一种是表锁，另一种是MDL（meta data lock）。</p>
 <ul>
-<li>表锁的语法是 lock tables … read&#x2F;write。与 FTWRL 类似，可以用 unlock tables 主动释放锁，也可以在客户端断开的时候自动释放。在还没有出现更细粒度的锁的时候，表锁是最常用的处理并发的方式。而对于 InnoDB 这种支持行锁的引擎，一般不使用 lock tables 命令来控制并发，毕竟锁住整个表的影响面还是太大。</li>
-<li>另一类表级的锁是 MDL（metadata lock)。<strong>MDL 不需要显式使用，在访问一个表的时候会被自动加上</strong>。MDL 的作用是，保证读写的正确性。<strong>MDL作用是防止DDL(data definition language)和DML(data manipulation language)并发的冲突</strong><ul>
-<li>MySQL 5.5 版本中引入了 MDL，当对一个表做增删改查操作的时候，加 MDL 读锁；当要对表做结构变更操作的时候，加 MDL 写锁。<ul>
+<li>表锁的语法是 lock tables … read/write。与 FTWRL 类似，可以用 unlock tables 主动释放锁，也可以在客户端断开的时候自动释放。在还没有出现更细粒度的锁的时候，表锁是最常用的处理并发的方式。而对于 InnoDB 这种支持行锁的引擎，一般不使用 lock tables 命令来控制并发，毕竟锁住整个表的影响面还是太大。</li>
+<li>另一类表级的锁是 MDL（metadata lock)。<strong>MDL 不需要显式使用，在访问一个表的时候会被自动加上</strong>。MDL 的作用是，保证读写的正确性。<strong>MDL作用是防止DDL(data definition language)和DML(data manipulation language)并发的冲突</strong>
+<ul>
+<li>MySQL 5.5 版本中引入了 MDL，当对一个表做增删改查操作的时候，加 MDL 读锁；当要对表做结构变更操作的时候，加 MDL 写锁。
+<ul>
 <li>读锁之间不互斥，因此你可以有多个线程同时对一张表增删改查。</li>
 <li>读写锁之间、写锁之间是互斥的，用来保证变更表结构操作的安全性。因此，如果有两个线程要同时给一个表加字段，其中一个要等另一个执行完才能开始执行。</li>
 </ul>
@@ -552,19 +526,26 @@ $logo-image-box-width = 46px
 </ul>
 </li>
 </ul>
-<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>InnoDB支持行锁但是MyISAM不支持行锁。</p>
-<h3 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h3><p>在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束的时候才释放。</p>
+<h2 id="行锁">行锁</h2>
+<p>InnoDB支持行锁但是MyISAM不支持行锁。</p>
+<h3 id="两阶段锁">两阶段锁</h3>
+<p>在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束的时候才释放。</p>
 <p>（优化思路：如果你的事务中需要锁多个行，要把最可能造成锁冲突、最可能影响并发度的锁尽量往后放）。</p>
-<h3 id="死锁和死锁检测"><a href="#死锁和死锁检测" class="headerlink" title="死锁和死锁检测"></a>死锁和死锁检测</h3><p>当并发系统中不同线程出现循环资源依赖，涉及的线程都在等待别的线程释放资源时，就会导致这几个线程都进入无限等待的状态，称为死锁。</p>
+<h3 id="死锁和死锁检测">死锁和死锁检测</h3>
+<p>当并发系统中不同线程出现循环资源依赖，涉及的线程都在等待别的线程释放资源时，就会导致这几个线程都进入无限等待的状态，称为死锁。</p>
 <p>当发生死锁的时候，会有两种策略：</p>
 <ul>
 <li>一种策略是，直接进入等待，直到超时。通过参数innodb_lock_wait_timeout来设置；</li>
 <li>另一种策略是，发起死锁检测，当检测到死锁的时候，回滚某一个事务并让其他事务继续执行。通过参数innodb_deadlock_detect设置为on启动。（常用，优化思路-&gt;控制并发度）</li>
 </ul>
-<h2 id="间隙锁"><a href="#间隙锁" class="headerlink" title="间隙锁"></a>间隙锁</h2><p>如果只有行锁的话，两个事务在并发执行的时候，事务A在重复读取一个数据的时候，如果事务B插入了一个数据，事务A有可能会读取到这个新的数据上去。而这就是幻读问题，既一个事务在重复读取同一个条件的时候，两次读取的结果数是不同的。</p>
+<h2 id="间隙锁">间隙锁</h2>
+<p>如果只有行锁的话，两个事务在并发执行的时候，事务A在重复读取一个数据的时候，如果事务B插入了一个数据，事务A有可能会读取到这个新的数据上去。而这就是幻读问题，既一个事务在重复读取同一个条件的时候，两次读取的结果数是不同的。</p>
 <p>在可重复读隔离级别下，普通的查询是快照读，是不会看到别的事务插入的数据的。因此，幻读是在“当前读”下才会出现的（select for update：当前读，对数据加写锁；select share in mode：当前读，对数据加读锁）</p>
-<h1 id="开发架构"><a href="#开发架构" class="headerlink" title="开发架构"></a>开发架构</h1><p>我认为在思考并发问题的时候，事务的设计和锁的实现保障了在本地的MySQL数据库能合理解各种决并发问题。不过，为了应对更大的需求量，会有主从架构的出现来缓解访问压力，我认为这里也需要考虑主备的一致性问题，所以把它算在了并发问题的第三部分。</p>
-<h2 id="一主一备"><a href="#一主一备" class="headerlink" title="一主一备"></a>一主一备</h2><h3 id="MySQL主备的基本原理"><a href="#MySQL主备的基本原理" class="headerlink" title="MySQL主备的基本原理"></a>MySQL主备的基本原理</h3><p>客户端的读写都直接访问节点A，而节点B作为节点A的备库，只是将A的更新都同步过来，到本地执行。</p>
+<h1>开发架构</h1>
+<p>我认为在思考并发问题的时候，事务的设计和锁的实现保障了在本地的MySQL数据库能合理解各种决并发问题。不过，为了应对更大的需求量，会有主从架构的出现来缓解访问压力，我认为这里也需要考虑主备的一致性问题，所以把它算在了并发问题的第三部分。</p>
+<h2 id="一主一备">一主一备</h2>
+<h3 id="MySQL主备的基本原理">MySQL主备的基本原理</h3>
+<p>客户端的读写都直接访问节点A，而节点B作为节点A的备库，只是将A的更新都同步过来，到本地执行。</p>
 <p>一般会把节点B设置为只读模式（readonly），原因如下：（同步更新的线程拥有超级权限可以无视readonly）</p>
 <ol>
 <li>有时候一些运营类的查询语句会被放到备库上去查，设置为只读可以防止误操作；</li>
@@ -579,7 +560,8 @@ $logo-image-box-width = 46px
 <li>备库 B 拿到 binlog 后，写到本地文件，称为中转日志（relay log）。</li>
 <li>sql_thread 读取中转日志，解析出日志里的命令，并执行。</li>
 </ol>
-<h3 id="双M结构"><a href="#双M结构" class="headerlink" title="双M结构"></a>双M结构</h3><p>上述是M-S结构，实际工作中更常用的是双M结构，区别在于双M结构的节点A和节点B互为主备关系。这样在切换的时候不需要再修改主备关系。</p>
+<h3 id="双M结构">双M结构</h3>
+<p>上述是M-S结构，实际工作中更常用的是双M结构，区别在于双M结构的节点A和节点B互为主备关系。这样在切换的时候不需要再修改主备关系。</p>
 <p>问题：因为互为备库，所以会出现循环复制的问题，以下是解决方案：</p>
 <ul>
 <li>规定两个库的 server id 必须不同，如果相同，则它们之间不能设定为主备关系；</li>
@@ -592,7 +574,8 @@ $logo-image-box-width = 46px
 <li>传到节点 B 执行一次以后，节点 B 生成的 binlog 的 server id 也是 A 的 server id；</li>
 <li>再传回给节点 A，A 判断到这个 server id 与自己的相同，就不会再处理这个日志。所以，死循环在这里就断掉了。</li>
 </ul>
-<h2 id="一主多从"><a href="#一主多从" class="headerlink" title="一主多从"></a>一主多从</h2>
+<h2 id="一主多从">一主多从</h2>
+
         </div>
 
         
@@ -730,7 +713,7 @@ $logo-image-box-width = 46px
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">MySQL事务隔离</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">事务的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7-ACID"><span class="nav-text">事务的基本特性 ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9A%E4%B9%89"><span class="nav-text">事务隔离级别的具体定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-text">事务的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVCC"><span class="nav-text">MVCC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%81"><span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E9%94%81"><span class="nav-text">全局锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E7%BA%A7%E9%94%81"><span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E9%94%81"><span class="nav-text">行锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E9%94%81"><span class="nav-text">两阶段锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E5%92%8C%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B"><span class="nav-text">死锁和死锁检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%B4%E9%9A%99%E9%94%81"><span class="nav-text">间隙锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%9E%B6%E6%9E%84"><span class="nav-text">开发架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E4%B8%80%E5%A4%87"><span class="nav-text">一主一备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E4%B8%BB%E5%A4%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">MySQL主备的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8CM%E7%BB%93%E6%9E%84"><span class="nav-text">双M结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E"><span class="nav-text">一主多从</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">事务的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7-ACID"><span class="nav-text">事务的基本特性 ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9A%E4%B9%89"><span class="nav-text">事务隔离级别的具体定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-text">事务的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVCC"><span class="nav-text">MVCC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E9%94%81"><span class="nav-text">全局锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E7%BA%A7%E9%94%81"><span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E9%94%81"><span class="nav-text">行锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E9%94%81"><span class="nav-text">两阶段锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E5%92%8C%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B"><span class="nav-text">死锁和死锁检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%B4%E9%9A%99%E9%94%81"><span class="nav-text">间隙锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">开发架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E4%B8%80%E5%A4%87"><span class="nav-text">一主一备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E4%B8%BB%E5%A4%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">MySQL主备的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8CM%E7%BB%93%E6%9E%84"><span class="nav-text">双M结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E"><span class="nav-text">一主多从</span></a></li></ol></li></ol>
 
     </div>
 </div>

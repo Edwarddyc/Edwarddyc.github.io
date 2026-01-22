@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="在求职的准备阶段中，看到很多朋友都说要准备Redis（Remote Dictionary Server），我才开始学习。然后了解到的第一个印象是写缓存，另一个印象是键值数据库（类似于Bigtable的数据库，但是区别于MySQL的关系型数据库）。我通过极客时间的 Redis 核心技术与实战来学习，建立了对于Redis的第一印象。这篇笔记就是整理自己对于Redis的理解。 Redis知识全景图Red">
+        <meta name="description" content="在求职的准备阶段中，看到很多朋友都说要准备Redis（Remote Dictionary Server），我才开始学习。然后了解到的第一个印象是写缓存，另一个印象是键值数据库（类似于Bigtable的数据库，但是区别于MySQL的关系型数据库）。我通过极客时间的 Redis 核心技术与实战来学习，建立了对于Redis的第一印象。这篇笔记就是整理自己对于Redis的理解。 Redis知识全景图 Re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis初印象">
 <meta property="og:url" content="http://example.com/2025/07/04/Redis%E5%88%9D%E5%8D%B0%E8%B1%A1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在求职的准备阶段中，看到很多朋友都说要准备Redis（Remote Dictionary Server），我才开始学习。然后了解到的第一个印象是写缓存，另一个印象是键值数据库（类似于Bigtable的数据库，但是区别于MySQL的关系型数据库）。我通过极客时间的 Redis 核心技术与实战来学习，建立了对于Redis的第一印象。这篇笔记就是整理自己对于Redis的理解。 Redis知识全景图Red">
+<meta property="og:description" content="在求职的准备阶段中，看到很多朋友都说要准备Redis（Remote Dictionary Server），我才开始学习。然后了解到的第一个印象是写缓存，另一个印象是键值数据库（类似于Bigtable的数据库，但是区别于MySQL的关系型数据库）。我通过极客时间的 Redis 核心技术与实战来学习，建立了对于Redis的第一印象。这篇笔记就是整理自己对于Redis的理解。 Redis知识全景图 Re">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-04T08:32:37.000Z">
 <meta property="article:modified_time" content="2025-07-05T11:20:53.534Z">
@@ -119,294 +119,253 @@
 
 
         <div class="main-content-header">
-            $logo-title-font-size = 2rem
-$desktop-search-icon-font-size = 1.5rem
-$navbar-bar-line-height = 2.5px
-$logo-image-box-width = 46px
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
 
-@import '../../common/variables'
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.navbar-container
-  font-family 'Chillax-Variable', sans-serif
-  width 100%
-  height 100%
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
-  padding-top $scroll-progress-bar-height
-  hover-style(
-    false,
-    0,
-    0
-  )
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
 
-  .navbar-content
-    position relative
-    height 100%
-    width $main-content-width
-    max-width $content-max-width
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    z-index $z-index-5
-    transition max-width 0.3s ease
+        </ul>
+    </div>
 
-    &.has-home-banner
-      max-width $content-max-width * 1.2
+    <div class="window-mask"></div>
 
-    +redefine-tablet()
-      width $main-content-width-tablet
+</header>
 
-    +redefine-mobile()
-      width $main-content-width-mobile
-
-    .left
-      display flex
-      align-items center
-      transform-origin left
-      transition-t('transform', '0', '0.2', 'linear')
-
-      .navbar-shrink &
-        transform scale(0.72)
-        transform-origin left
-
-      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
-        .logo-image
-          width $logo-image-box-width
-          height $logo-image-box-width
-          margin-right 8px
-
-          +redefine-tablet()
-            width: $logo-image-box-width * 0.9
-            height: $logo-image-box-width * 0.9
-
-          +redefine-mobile()
-            width: $logo-image-box-width * 0.8
-            height: $logo-image-box-width * 0.8
-
-          img
-            border-radius 6px
-            width 100%
-
-      .logo-title
-        font-size $logo-title-font-size
-        font-weight 520
-        // letter-spacing 1px
-        line-height 1
-        color var(--first-text-color)
-
-        h1
-          margin 0
-          font-size $logo-title-font-size
-          font-weight 520
-          //letter-spacing 1px
-          line-height 1
-          color var(--first-text-color)
-
-          +redefine-tablet()
-            font-size: $logo-title-font-size * 0.9
-
-          +redefine-mobile()
-            font-size: $logo-title-font-size * 0.8
-
-        +redefine-tablet()
-          font-size: $logo-title-font-size * 0.9
-
-        +redefine-mobile()
-          font-size: $logo-title-font-size * 0.8
-
-    .right
-      .desktop
-        .navbar-list
-          display flex
-          gap 24px
-          align-items center
-
-          +redefine-tablet()
-            display none
-
-          .navbar-item
-            float left
-            // padding 5px
-            position relative
-            font-size 1rem
-            font-weight 450
-            cursor pointer
-            color var(--default-text-color)
-
-            a
-              display block
-              padding 5px
-
-            a .fa-chevron-down
-              transform rotate(0deg)
-              transition transform 0.3s ease
-
-            &:hover a .fa-chevron-down
-              transform rotate(180deg)
-
-            &:hover .has-dropdown
-              &::after
-                display none !important
-
-            &:hover a, .active
-              &::after
-                content ''
-                position absolute
-                bottom -5px
-                left 50%
-                width 100%
-                height 2px
-                transform translateX(-50%)
-                border-radius $redefine-border-radius-large
-                background var(--primary-color)
-                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
-
-                .navbar-shrink &
-                  bottom -($navbar-shrink-height / 2 - 17)
-
-            &.search
-              font-size $desktop-search-icon-font-size
-              margin-left 26px
-
-              i
-                color var(--default-text-color)
-
-            .sub-menu
-              position absolute
-              right auto
-              left 50%
-              -webkit-transform translate(-50%, 0)
-              -o-transform translate(-50%, 0)
-              transform translate(-50%, 0)
-              margin-top 0px
-              width auto
-              text-align center
-              list-style none
-              padding 0 10px
-              border-radius $redefine-border-radius-large
-              // visibility hidden
-              max-height 0px
-              overflow hidden
-              transition-t('all', '0', '0.2', 'linear')
-
-              li a
-                white-space nowrap
-                color var(--default-text-color)
-                font-size 1rem
-                padding 3px 15px
-                display block
-                text-align center
-                border-radius 8px
-                transition-t('all', '0', '0.2', 'linear')
-
-                &:hover
-                  color var(--primary-color)
-                  background-color var(--third-background-color)
-
-        .navbar-list .navbar-item:hover .sub-menu
-          // visibility visible
-          max-height 500px
-          transition-t('all', '0', '0.2', 'ease')
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            5px
-          )
-
-      .mobile
-        display flex
-        justify-content space-between
-        align-items center
-
-        .icon-item
-          display none
-          position relative
-          cursor pointer
-          font-size 18px
-          margin-left 12px
-          width 20px
-          height 20px
-          color var(--default-text-color)
-
-          i
-            color var(--default-text-color)
-
-          &:first-child
-            margin-left 0
-
-          +redefine-tablet()
-            display flex
-            justify-content center
-            align-items center
-
-        .navbar-bar
-          .navbar-bar-middle
-            width 18px
-            height $navbar-bar-line-height
-            position relative
-            background var(--default-text-color)
-
-            .navbar-drawer-show &
-              background transparent
-
-            &::before, &::after
-              content ''
-              position absolute
-              left 0
-              width 100%
-              height $navbar-bar-line-height
-              background var(--default-text-color)
-              transition-t('transform', '0', '0.38', 'ease')
-
-            &::before
-              top -6px
-
-              .navbar-drawer-show &
-                transform translateY(6px) rotate(45deg)
-
-            &::after
-              bottom -6px
-
-              .navbar-drawer-show &
-                transform translateY(-6px) rotate(-45deg)
-
-  .navbar-drawer
-    padding $navbar-height 0 20px 0
-    transform scaleY(0)
-    transform-origin top
-    z-index $z-index-2
-    opacity 0
-    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
-
-    .navbar-drawer-show &
-      transform scaleY(1)
-      opacity 1
-
-  .window-mask
-    position absolute
-    top 0
-    width 100%
-    height 100vh
-    background rgba(0, 0, 0, 0.4)
-    z-index $z-index-1
-    visibility hidden
-    opacity 0
-    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
-
-    .navbar-drawer-show &
-      visibility visible
-      opacity 1
-
-.navbar-drawer-show
-  overflow hidden
 
         </div>
 
@@ -488,10 +447,12 @@ $logo-image-box-width = 46px
 
         <div class="article-content markdown-body">
             <p>在求职的准备阶段中，看到很多朋友都说要准备Redis（Remote Dictionary Server），我才开始学习。然后了解到的第一个印象是写缓存，另一个印象是键值数据库（类似于Bigtable的数据库，但是区别于MySQL的关系型数据库）。我通过极客时间的 <em>Redis 核心技术与实战</em>来学习，建立了对于Redis的第一印象。这篇笔记就是整理自己对于Redis的理解。</p>
-<h2 id="Redis知识全景图"><a href="#Redis知识全景图" class="headerlink" title="Redis知识全景图"></a>Redis知识全景图</h2><p>Redis的知识全景图包括了“两大维度、三大系统”：</p>
+<h2 id="Redis知识全景图">Redis知识全景图</h2>
+<p>Redis的知识全景图包括了“两大维度、三大系统”：</p>
 <ul>
 <li>应用维度：缓存应用、集群应用、数据结构应用</li>
-<li>系统维度：<ul>
+<li>系统维度：
+<ul>
 <li>高性能主线：（单线程模型、数据结构、AOF、Epoll网络架构）</li>
 <li>高可用主线：（主从复制、哨兵机制、RDB）</li>
 <li>高可扩展主线：（数据分片、负载均衡）</li>
@@ -505,9 +466,12 @@ $logo-image-box-width = 46px
 <li>高可用性：日志问题，使用AOF文件日志和RDB快照来保证数据在宕机之后保持可恢复性。</li>
 <li>分布式架构：分布式架构涉及到了Redis的高可用性和高可扩展性。Redis采用的是一主多从，主库和从库都可以读取数据，主库可以写入 修改数据，同时哨兵集群（形同监工）负责整体数据库的监控、选主和通知。而对于数据库的可扩展性，采用横向扩展即数据切片的方式，由多个Hash Slot和Redis实例来负责数据的存储，此时就会涉及到负载均衡的问题。（在学习分布式架构的时候，我现在习惯去和GFS的单Master架构（GFS好像就是多了一个单节点负责管理数据切片的，对于单节点的哨兵机制和这里很像），还有MySQL的主从架构去比较，感觉有很多相似之处）</li>
 </ol>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="键值对数据结构"><a href="#键值对数据结构" class="headerlink" title="键值对数据结构"></a>键值对数据结构</h3><p>首先，需要学习的是Redis是一种键值数据库，Redis使用了一个哈希表来保存所有键值对。一个哈希表就是一个数组，数组的每个元素称为一个哈希桶。哈希桶中的元素保存的并不是值本身，而是指向具体值的指针。哈希桶中的 entry 元素中保存了key和value指针，分别指向了实际的键和值，这样一来，即使值是一个集合，也可以通过*value指针被查找到。</p>
+<h2 id="数据结构">数据结构</h2>
+<h3 id="键值对数据结构">键值对数据结构</h3>
+<p>首先，需要学习的是Redis是一种键值数据库，Redis使用了一个哈希表来保存所有键值对。一个哈希表就是一个数组，数组的每个元素称为一个哈希桶。哈希桶中的元素保存的并不是值本身，而是指向具体值的指针。哈希桶中的 entry 元素中保存了key和value指针，分别指向了实际的键和值，这样一来，即使值是一个集合，也可以通过*value指针被查找到。</p>
 <p>当哈希表由于太小而导致链过长了之后，会进行rehash来扩容。在具体的实现上，Redis默认使用两个全局哈希表。一开始使用哈希表1，而哈希表2没有分配额外的空间，当需要进行rehash的时候。为哈希表2分配大于哈希表1的空间，然后把哈希表1的数据重新映射到哈希表2中，之后释放哈希表1的空间并留作下一次扩容使用。不过由于一次全量复制会造成Redis线程阻塞，所以Redis采用渐进式rehash，即处理一次请求再处理一个索引下的entries的重映射复制（这里很像AOF的重写，不过是把大文件变成小文件）</p>
-<h3 id="Value数据结构"><a href="#Value数据结构" class="headerlink" title="Value数据结构"></a>Value数据结构</h3><p>键值对中值的数据结构有”String、List、Hash、Set、Sorted Set”，其底层的数据结构对应如下：</p>
+<h3 id="Value数据结构">Value数据结构</h3>
+<p>键值对中值的数据结构有&quot;String、List、Hash、Set、Sorted Set&quot;，其底层的数据结构对应如下：</p>
 <ul>
 <li>String字符串：简单动态字符串</li>
 <li>List列表：双向链表、压缩列表</li>
@@ -517,20 +481,26 @@ $logo-image-box-width = 46px
 </ul>
 <p>String 类型的底层实现只有一种数据结构，也就是简单动态字符串。而 List、Hash、Set 和 Sorted Set 这四种数据类型，都有两种底层实现结构。通常情况下，我们会把这四种类型称为集合类型，它们的特点是一个键对应了一个集合的数据。</p>
 <p>可以见到，集合的底层数据结构包括五个：双向链表、压缩列表、哈希表、跳表和整数数组。其中整数数组、哈希表和双向链表都比较熟悉，这里着重记录一下压缩列表和跳表。</p>
-<h4 id="压缩列表"><a href="#压缩列表" class="headerlink" title="压缩列表"></a>压缩列表</h4><p>压缩列表的思想会让我想到网络传输里面TCP的数据头，或者JAVA并发开发里面线程的数据头，本质是就是在数据上增加描述数据的信息。压缩列表在表头有三个字段，zlbytes、zltail和zllen，在尾部有zlend。</p>
+<h4 id="压缩列表">压缩列表</h4>
+<p>压缩列表的思想会让我想到网络传输里面TCP的数据头，或者JAVA并发开发里面线程的数据头，本质是就是在数据上增加描述数据的信息。压缩列表在表头有三个字段，zlbytes、zltail和zllen，在尾部有zlend。</p>
 <p>其中，zlbytes：整个压缩列表占用的内存字节数。 zltail：从压缩列表起始地址到最后一个节点的字节数。 zllength：压缩列表包含的节点个数。 entries：一系列节点，每个节点代表一个键值对或者列表项。 zlend：特殊值0xFF，表示压缩列表的结束标志。</p>
 <p><strong>应用场景</strong>：在列表、散列和有序集合的长度较短或者体积较小的时候，Redis可以选择使用一种名为压缩列表（ziplist）的紧凑存储方式来存储这些结构。压缩列表是列表、散列和有序集合这3种不同类型的对象的一种非结构化（unstructured）表示：与Redis在通常情况下使用双链表表示列表、使用散列表表示散列、使用散列表加上跳跃表（skiplist）表示有序集合的做法不同，压缩列表会以序列化的方式存储数据，这些序列化数据每次被读取的时候都要进行解码，每次被写入的时候也要进行局部的重新编码，并且可能需要对内存里面的数据进行移动。压缩列表的设计不是为了查询的，而是为了减少内存的使用和内存的碎片化。</p>
-<h4 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h4><p>因为有序链表的按序查找非常慢，所以设计了跳表这个数据结构。跳表在链表的基础上，增加了多级索引，通过索引位置的几个跳转，实现数据的快速定位。查找的时间复杂度是O(log(N))</p>
-<h3 id="不同操作的复杂度"><a href="#不同操作的复杂度" class="headerlink" title="不同操作的复杂度"></a>不同操作的复杂度</h3><p>直接记录原书的“四句口诀”：</p>
+<h4 id="跳表">跳表</h4>
+<p>因为有序链表的按序查找非常慢，所以设计了跳表这个数据结构。跳表在链表的基础上，增加了多级索引，通过索引位置的几个跳转，实现数据的快速定位。查找的时间复杂度是O(log(N))</p>
+<h3 id="不同操作的复杂度">不同操作的复杂度</h3>
+<p>直接记录原书的“四句口诀”：</p>
 <ul>
 <li>单元素操作是基础；（对单元素的增删改查，普遍都是O(1)）</li>
 <li>范围操作非常耗时；（遍历操作，复杂度普遍为O(N)）</li>
 <li>统计操作通常高效；（因为数据结构中一般都有记录元素个数所以高效）</li>
 <li>例外情况只有几个。（压缩列表和双向链表都会记录表头和表尾的偏移量，在头尾的操作高效）</li>
 </ul>
-<h2 id="高性能IO模型"><a href="#高性能IO模型" class="headerlink" title="高性能IO模型"></a>高性能IO模型</h2><p>我在思考这个问题的时候首先想到的是并发开发（原书也是这么提的），因为一般程序都会考虑通过多线程并发开发来缓和CPU寄存器、Cache、内存和磁盘之间数据读写速度不一致导致的资源浪费问题。但是Redis却反其道而行选择用单线程，所以我觉得这里是一个重点。</p>
-<h3 id="为什么多线程不行"><a href="#为什么多线程不行" class="headerlink" title="为什么多线程不行"></a>为什么多线程不行</h3><p>多线程的缺点就在于对共享资源的访问上，为了保持一致性，常需要锁等手段来保证安全访问，增加了额外的开销。如果锁的设计出现问题，即使增加了线程，大部分线程都在等待获取访问共享资源的互斥锁，并行变成串行。因此，Redis选择直接采用单线程模型，简化代码增加可维护性。</p>
-<h3 id="单线程Redis为什么那么快"><a href="#单线程Redis为什么那么快" class="headerlink" title="单线程Redis为什么那么快"></a>单线程Redis为什么那么快</h3>
+<h2 id="高性能IO模型">高性能IO模型</h2>
+<p>我在思考这个问题的时候首先想到的是并发开发（原书也是这么提的），因为一般程序都会考虑通过多线程并发开发来缓和CPU寄存器、Cache、内存和磁盘之间数据读写速度不一致导致的资源浪费问题。但是Redis却反其道而行选择用单线程，所以我觉得这里是一个重点。</p>
+<h3 id="为什么多线程不行">为什么多线程不行</h3>
+<p>多线程的缺点就在于对共享资源的访问上，为了保持一致性，常需要锁等手段来保证安全访问，增加了额外的开销。如果锁的设计出现问题，即使增加了线程，大部分线程都在等待获取访问共享资源的互斥锁，并行变成串行。因此，Redis选择直接采用单线程模型，简化代码增加可维护性。</p>
+<h3 id="单线程Redis为什么那么快">单线程Redis为什么那么快</h3>
+
         </div>
 
         
