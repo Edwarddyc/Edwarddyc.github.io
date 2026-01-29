@@ -26,8 +26,21 @@
 <meta property="og:description" content="RAG 知识库基本概念什么是 RAG?RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合信息检索技术和 AI 内容生成的混合架构，可以解决大模型的知识时效性限制和幻觉问题。 使用 RAG 的大模型应用在生成回答之前，会先从外部知识库种检索相关信息，然后将这些检索到的内容作为额外上下文提供给模型，引导其生成更准确、更相关的回答。 应用前景：  准确回答关于">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769050980111.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345241298.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345392240.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345492132.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769346878949.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769347101961.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769347890758.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769348612229.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769348692630.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%BC%80%E5%8F%91%E6%8A%80%E6%B3%95/1769390033287.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769412901660.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769413694600.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769414214025.png">
+<meta property="og:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769494539500.png">
 <meta property="article:published_time" content="2026-01-22T02:01:03.000Z">
-<meta property="article:modified_time" content="2026-01-22T09:06:21.325Z">
+<meta property="article:modified_time" content="2026-01-27T12:15:54.252Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769050980111.png">
@@ -412,8 +425,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-22 17:06:21</span>
-            <span class="mobile">2026-01-22 17:06:21</span>
+            <span class="desktop">2026-01-27 20:15:54</span>
+            <span class="mobile">2026-01-27 20:15:54</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -424,12 +437,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>754 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.9k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>15 Mins</span>
         </span>
     
     
@@ -490,7 +503,218 @@
                      data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769050980111.png"
                       alt="1769050980111"
                 ></p>
-<h2 id="RAG-相关技术"><a href="#RAG-相关技术" class="headerlink" title="RAG 相关技术"></a>RAG 相关技术</h2>
+<h2 id="RAG-相关技术"><a href="#RAG-相关技术" class="headerlink" title="RAG 相关技术"></a>RAG 相关技术</h2><h3 id="Embedding-和-Embedding-模型"><a href="#Embedding-和-Embedding-模型" class="headerlink" title="Embedding 和 Embedding 模型"></a>Embedding 和 Embedding 模型</h3><p>Embedding 嵌入是将高维离散数据转换为低维连续向量的过程。一般维度越高表达能力越强，可以捕获更丰富的语义信息和更细微的差别，但同样占用更多存储空间。</p>
+<p>举例：Word2Vec（文本）、ResNet（图像）等。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345241298.png"
+                      alt="1769345241298"
+                ></p>
+<h3 id="向量数据库"><a href="#向量数据库" class="headerlink" title="向量数据库"></a>向量数据库</h3><p>向量数据库是专门存储和检索向量数据的数据库系统。<strong>通过高效索引算法实现快速相似性搜索</strong>，支持 KNN 等操作。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345392240.png"
+                      alt="1769345392240"
+                ></p>
+<p>（向量数据库并非只能存储向量数据，与传统数据库不同，向量数据库优化了高维向量的存储和检索！！！）</p>
+<p>向量数据库分类：</p>
+<p>向量数据库和向量存储：Milvus、Pinecone；</p>
+<p>传统数据库安装向量存储和检索插件：PGVector、Redis Stack 的 RediSearch 等。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769345492132.png"
+                      alt="1769345492132"
+                ></p>
+<h3 id="召回-Recall"><a href="#召回-Recall" class="headerlink" title="召回 Recall"></a>召回 Recall</h3><p>第一个想到的是再分类模型评估标准中，有一个召回率定义为<strong>实际为正例的样本中被正确预测为正例的比例</strong>， <code>Recall = TP/(TP + FN)</code>。</p>
+<p>而在向量数据库中，召回的定义是从大规模数据集中快速筛选出可能相关的候选子集，强调速度和广度，而非精确度。</p>
+<h3 id="精排和-Rank-模型"><a href="#精排和-Rank-模型" class="headerlink" title="精排和 Rank 模型"></a>精排和 Rank 模型</h3><p>精排（精确排序）是搜索 &#x2F; 推荐系统的最后阶段，使用计算复杂度更高的算法，考虑更多特征和业务规则，对少量候选项进行更复杂、精细的排序。</p>
+<p>比如，短视频推荐先通过召回获取数万个可能相关视频，再通过粗排缩减至数百条，最后精排阶段会考虑用户最近的互动、视频热度、内容多样性等复杂因素，确定最终展示的 10 个视频及顺序。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769346878949.png"
+                      alt="1769346878949"
+                ></p>
+<p>Rank 模型（排序模型）负责对召回阶段筛选出的候选集进行精确排序，考虑多种特征评估相关性。</p>
+<p>现代 Rank 模型通常基于深度学习，如 Bert、LambdaMART 等，综合考虑查询与候选项的相关性、用户历史行为等因素。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769347101961.png"
+                      alt="1769347101961"
+                ></p>
+<h3 id="混合检索策略"><a href="#混合检索策略" class="headerlink" title="混合检索策略"></a>混合检索策略</h3><p>混合检索策略结合多种检索方法的优势，提高搜索效果。常见组合包括<strong>关键词检索、语义检索、知识图谱</strong>等。</p>
+<p>想要在程序中让 AI 使用知识库，首先使用 Spring AI，再通过 2 种模式进行开发 —— 基于本地知识库或云知识库服务实现 RAG。</p>
+<h1 id="RAG-核心特性"><a href="#RAG-核心特性" class="headerlink" title="RAG 核心特性"></a>RAG 核心特性</h1><h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><h2 id="文档收集和切割-ETL"><a href="#文档收集和切割-ETL" class="headerlink" title="文档收集和切割 - ETL"></a>文档收集和切割 - ETL</h2><p>文档收集和切割阶段，我们要对自己准备好的知识库文档进行处理，然后保存到向量数据库中。这个过程即为 ETL，Spring AI 提供了对 ETL 的支持，参考 <a class="link"   target="_blank" rel="noopener" href="https://docs.spring.io/spring-ai/reference/api/etl-pipeline.html" >官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>文档不仅仅包含文本，还可以包含一系列元信息和多媒体附件（推荐 Markdown 格式，尽量结构化）：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769347890758.png"
+                      alt="1769347890758"
+                ></p>
+<h3 id="ETL"><a href="#ETL" class="headerlink" title="ETL"></a>ETL</h3><p>在 Spring AI 中，ETL 的 3 大核心组件，按照顺序执行：</p>
+<ul>
+<li>DocumentReader：读取文档，得到文档列表；</li>
+<li>DocumentTransformer：转换文档，得到处理好的文档列表（如去除冗余信息、分词、词性标注等）；</li>
+<li>DocumentWriter：将文档列表保存到存储中（将文档以嵌入向量的形式写入到向量数据库，或者以键值对字符串的形式保存到 Redis 等 KV 存储中）。</li>
+</ul>
+<p>流程如图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769348612229.png"
+                      alt="1769348612229"
+                ></p>
+<p>完整的 ETL 类图如下</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769348692630.png"
+                      alt="1769348692630"
+                ></p>
+<h4 id="抽取（Extract）"><a href="#抽取（Extract）" class="headerlink" title="抽取（Extract）"></a>抽取（Extract）</h4><p>Spring AI 通过 DocumentReader 组件实现文档抽取，也就是把文档加载到内存中。</p>
+<p>DocumentReader 接口实现了 <code>Supplier&lt;List&lt;Document&gt;&gt;</code> 接口，主要负责从各种数据源读取数据并转换为 Document 对象集合。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DocumentReader</span> <span class="keyword">extends</span> <span class="title class_">Supplier</span>&lt;List&lt;Document&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">default</span> List&lt;Document&gt; <span class="title function_">read</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>实际开发中，我们可以直接使用 Spring AI 内置的多种 <a class="link"   target="_blank" rel="noopener" href="https://docs.spring.io/spring-ai/reference/api/etl-pipeline.html#_documentreaders" >DocumentReader 实现类 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，用于处理不同类型的数据源：</p>
+<ol>
+<li>JsonReader：读取 JSON 文档</li>
+<li>TextReader：读取纯文本文件</li>
+<li>MarkdownReader：读取 Markdown 文件</li>
+<li>PDFReader：读取 PDF 文档，基于 Apache PdfBox 库实现</li>
+<li>HtmlReader：读取 HTML 文档，基于 jsoup 库实现</li>
+<li>TikaDocumentReader：基于 <a class="link"   target="_blank" rel="noopener" href="https://tika.apache.org/3.1.0/formats.html" >Apache Tika <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 库实现多种格式的文档，更灵活</li>
+</ol>
+<p>我个人使用的版本只找到了 JsonReader、TextReader。</p>
+<p>举例邮件解析器的实现：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MsgEmailParser</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">MsgEmailParser</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// Private constructor to prevent instantiation</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Convert MsgEmailElement to Document</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> element MSG email element</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Document object</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Document <span class="title function_">convertToDocument</span><span class="params">(MsgEmailElement element)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (element == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;MsgEmailElement cannot be null&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Build metadata</span></span><br><span class="line">        Map&lt;String, Object&gt; metadata = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add metadata with null check</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(element.getSubject())) &#123;</span><br><span class="line">            metadata.put(<span class="string">&quot;subject&quot;</span>, element.getSubject());</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// ... 省略更多元信息的设置</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Create Document object with content null check</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">content</span> <span class="operator">=</span> StringUtils.hasText(element.getText()) ? element.getText() : <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Document</span>(content, metadata);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="转换（Transform）"><a href="#转换（Transform）" class="headerlink" title="转换（Transform）"></a>转换（Transform）</h4><p>Spring AI 通过 DocumentTransformer 组件实现文档转换。</p>
+<p>Spring AI 通过 DocumentTransformer 组件实现文档转换，DocumentTransformer 接口实现了 <code>Function&lt;List&lt;Document&gt;, List&lt;Document&gt;&gt;</code> 接口，负责将一组文档转换为另一组文档。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DocumentTransformer</span> <span class="keyword">extends</span> <span class="title class_">Function</span>&lt;List&lt;Document&gt;, List&lt;Document&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">default</span> List&lt;Document&gt; <span class="title function_">transform</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> apply(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Spring AI 提供了多种 DocumentTransformer 实现类，可以简单分为 3 类。</p>
+<p>1）TextSpliter 文本分割器</p>
+<p>其中 TextSpliter 是文本分割器的基类，提供了分割单词的流程方法：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%BC%80%E5%8F%91%E6%8A%80%E6%B3%95/1769390033287.png"
+                      alt="1769390033287"
+                ></p>
+<p>TokenTextSpliter 是其实现类，基于 Token 的文本分割器。它考虑了语义边界（比如句子结尾）来创建有意义的文本段落，是成本较低的文本切分方式。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyTokenTextSplitter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;Document&gt; <span class="title function_">splitDocuments</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="type">TokenTextSplitter</span> <span class="variable">splitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TokenTextSplitter</span>();</span><br><span class="line">        <span class="keyword">return</span> splitter.apply(documents);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;Document&gt; <span class="title function_">splitCustomized</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="type">TokenTextSplitter</span> <span class="variable">splitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TokenTextSplitter</span>(<span class="number">1000</span>, <span class="number">400</span>, <span class="number">10</span>, <span class="number">5000</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> splitter.apply(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>官方文档对 TokenSpilter 工作原理的简单解释：</p>
+<ol>
+<li>使用 CL100K_BASE 编码将输入文本编码为 token；</li>
+<li>根据 defaultChunkSize 将编码后的文本分割成块；</li>
+<li>对于每个块：<ol>
+<li>将块解码回文本</li>
+<li>尝试在 minChunkSizeChars 之后找到合适的断点（句号问号等）</li>
+<li>如果找到断点，则在该断点截断块</li>
+<li>修剪块并根据 keepSeparator 设置选择性地删除换行符</li>
+<li>如果生长的快长度大于 minChunkLengthToEmbed，则将其添加到输出中</li>
+</ol>
+</li>
+<li>这个过程会一直持续到所有 token 都被处理完或达到 maxNumChunks 为止</li>
+<li>如果剩余文本长度大于 minChunkLengthToEmbed，则会作为最后一个块添加</li>
+</ol>
+<p>2）MetadataEnricher 元数据增强器</p>
+<p>元数据增强器的作用是为文档补充更多的元信息，便于后续检索，而不是改变文档本身的切分规则。包括：</p>
+<ul>
+<li>KeywordMetadataEnricher：使用 AI 提取关键词并添加到元数据；</li>
+<li>SummaryMetadataEnricher：使用 AI 生成文档摘要并添加到元数据。不仅可以为当前文档生成摘要，还能关联前一个和后一个相邻的文档，让摘要更完整。</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyDocumentEnricher</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ChatModel chatModel;</span><br><span class="line"></span><br><span class="line">    MyDocumentEnricher(ChatModel chatModel) &#123;</span><br><span class="line">        <span class="built_in">this</span>.chatModel = chatModel;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">      <span class="comment">// 关键词元信息增强器</span></span><br><span class="line">    List&lt;Document&gt; <span class="title function_">enrichDocumentsByKeyword</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="type">KeywordMetadataEnricher</span> <span class="variable">enricher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">KeywordMetadataEnricher</span>(<span class="built_in">this</span>.chatModel, <span class="number">5</span>);</span><br><span class="line">        <span class="keyword">return</span> enricher.apply(documents);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 摘要元信息增强器</span></span><br><span class="line">    List&lt;Document&gt; <span class="title function_">enrichDocumentsBySummary</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="type">SummaryMetadataEnricher</span> <span class="variable">enricher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SummaryMetadataEnricher</span>(chatModel, </span><br><span class="line">            List.of(SummaryType.PREVIOUS, SummaryType.CURRENT, SummaryType.NEXT));</span><br><span class="line">        <span class="keyword">return</span> enricher.apply(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>3）ContentFormatter 内容格式化工具</p>
+<p>用于统一文档内容格式。</p>
+<p>主要提供了 3 类功能：</p>
+<ol>
+<li>文档格式化</li>
+<li>元数据过滤</li>
+<li>自定义模板，该类采用 Builder 模式创建实例<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DefaultContentFormatter</span> <span class="variable">formatter</span> <span class="operator">=</span> DefaultContentFormatter.builder()</span><br><span class="line">    .withMetadataTemplate(<span class="string">&quot;&#123;key&#125;: &#123;value&#125;&quot;</span>)</span><br><span class="line">    .withMetadataSeparator(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    .withTextTemplate(<span class="string">&quot;&#123;metadata_string&#125;\n\n&#123;content&#125;&quot;</span>)</span><br><span class="line">    .withExcludedInferenceMetadataKeys(<span class="string">&quot;embedding&quot;</span>, <span class="string">&quot;vector_id&quot;</span>)</span><br><span class="line">    .withExcludedEmbedMetadataKeys(<span class="string">&quot;source_url&quot;</span>, <span class="string">&quot;timestamp&quot;</span>)</span><br><span class="line">    .build();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用格式化器处理文档</span></span><br><span class="line"><span class="type">String</span> <span class="variable">formattedText</span> <span class="operator">=</span> formatter.format(document, MetadataMode.INFERENCE);</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<p>应用场景：</p>
+<ol>
+<li>提供上下文：将元数据与内容结合；</li>
+<li>过滤无关信息：通过排序特定元数据减少噪音提高检索和生成质量；</li>
+<li>场景适配：为不同场景（如推理和嵌入）提供不同格式化策略；（！！！）</li>
+<li>结构化输出：为 AI 模型提供结构化的输入，使其能更好地理解和处理文档内容。</li>
+</ol>
+<h4 id="加载（Load）"><a href="#加载（Load）" class="headerlink" title="加载（Load）"></a>加载（Load）</h4><p>Spring AI 通过 DocumentWriter 组件实现文档加载（写入）。</p>
+<p>DocumentWriter 接口实现了 <code>Consumer&lt;List&lt;Document&gt;&gt;</code> 接口，负责将处理后的文档写入到目标存储中：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DocumentWriter</span> <span class="keyword">extends</span> <span class="title class_">Consumer</span>&lt;List&lt;Document&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        accept(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Spring AI 提供了 2 种内置的 DocumentWriter 实现：</p>
+<ol>
+<li>FileDocumentWriter：将文档写入到文件系统<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyDocumentWriter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">writeDocuments</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        <span class="type">FileDocumentWriter</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileDocumentWriter</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="literal">true</span>, MetadataMode.ALL, <span class="literal">false</span>);</span><br><span class="line">        writer.accept(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>VectorStoreWriter：将文档写入到向量数据库<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyVectorStoreWriter</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> VectorStore vectorStore;</span><br><span class="line"></span><br><span class="line">    MyVectorStoreWriter(VectorStore vectorStore) &#123;</span><br><span class="line">        <span class="built_in">this</span>.vectorStore = vectorStore;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">storeDocuments</span><span class="params">(List&lt;Document&gt; documents)</span> &#123;</span><br><span class="line">        vectorStore.accept(documents);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h4 id="ETL-流程示例"><a href="#ETL-流程示例" class="headerlink" title="ETL 流程示例"></a>ETL 流程示例</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抽取：从 PDF 文件读取文档</span></span><br><span class="line"><span class="type">PDFReader</span> <span class="variable">pdfReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PagePdfDocumentReader</span>(<span class="string">&quot;knowledge_base.pdf&quot;</span>);</span><br><span class="line">List&lt;Document&gt; documents = pdfReader.read();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转换：分割文本并添加摘要</span></span><br><span class="line"><span class="type">TokenTextSplitter</span> <span class="variable">splitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TokenTextSplitter</span>(<span class="number">500</span>, <span class="number">50</span>);</span><br><span class="line">List&lt;Document&gt; splitDocuments = splitter.apply(documents);</span><br><span class="line"></span><br><span class="line"><span class="type">SummaryMetadataEnricher</span> <span class="variable">enricher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SummaryMetadataEnricher</span>(chatModel, </span><br><span class="line">    List.of(SummaryType.CURRENT));</span><br><span class="line">List&lt;Document&gt; enrichedDocuments = enricher.apply(splitDocuments);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载：写入向量数据库</span></span><br><span class="line">vectorStore.write(enrichedDocuments);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者使用链式调用</span></span><br><span class="line">vectorStore.write(enricher.apply(splitter.apply(pdfReader.read())));</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="向量转换和存储"><a href="#向量转换和存储" class="headerlink" title="向量转换和存储"></a>向量转换和存储</h2><p>Spring AI 官方 提供了向量数据库接口 <code>VectorStore</code> 和向量存储整合包，帮助开发者快速集成各种第三方向量存储，比如 Milvus、Redis、PGVector、Elasticsearch 等。</p>
+<h3 id="VectorStore-接口介绍"><a href="#VectorStore-接口介绍" class="headerlink" title="VectorStore 接口介绍"></a>VectorStore 接口介绍</h3><p>VectorStore 是 Spring AI 中用于与向量数据库交互的核心接口，它继承自 DocumentWriter，主要提供以下功能：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">VectorStore</span> <span class="keyword">extends</span> <span class="title class_">DocumentWriter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.getClass().getSimpleName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(List&lt;Document&gt; documents)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(List&lt;String&gt; idList)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(Filter.Expression filterExpression)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(String filterExpression)</span> &#123; ... &#125;;</span><br><span class="line"></span><br><span class="line">    List&lt;Document&gt; <span class="title function_">similaritySearch</span><span class="params">(String query)</span>;</span><br><span class="line"></span><br><span class="line">    List&lt;Document&gt; <span class="title function_">similaritySearch</span><span class="params">(SearchRequest request)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> &lt;T&gt; Optional&lt;T&gt; <span class="title function_">getNativeClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个接口定义了向量存储的基本操作，即“增删改查”：</p>
+<ul>
+<li>添加文档到向量库</li>
+<li>从向量库删除文档</li>
+<li>基于查询进行相似度搜索</li>
+<li>获取原生客户端（用于特定实现的高级操作）</li>
+</ul>
+<h3 id="搜索请求构建"><a href="#搜索请求构建" class="headerlink" title="搜索请求构建"></a>搜索请求构建</h3><p>SPring AI 提供了 SearchRequest 类，用于构建相似度搜索请求：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SearchRequest</span> <span class="variable">request</span> <span class="operator">=</span> SearchRequest.builder()</span><br><span class="line">    .query(<span class="string">&quot;什么是程序员鱼皮的编程导航学习网 codefather.cn？&quot;</span>)</span><br><span class="line">    .topK(<span class="number">5</span>)                  <span class="comment">// 返回最相似的5个结果</span></span><br><span class="line">    .similarityThreshold(<span class="number">0.7</span>) <span class="comment">// 相似度阈值，0.0-1.0之间</span></span><br><span class="line">    .filterExpression(<span class="string">&quot;category == &#x27;web&#x27; AND date &gt; &#x27;2025-05-03&#x27;&quot;</span>)  <span class="comment">// 过滤表达式</span></span><br><span class="line">    .build();</span><br><span class="line"></span><br><span class="line">List&lt;Document&gt; results = vectorStore.similaritySearch(request);</span><br></pre></td></tr></table></figure></div>
+
+<p>SearchRequest 提供了多种配置选项：</p>
+<ul>
+<li>query：搜索的查询文本</li>
+<li>topK：返回的最大结果数，默认为 4</li>
+<li>similarityThreshold：相似度阈值，低于此值的结果会被过滤掉</li>
+<li>filterExpression：基于文档元数据的过滤表达式，语法类似 SQL</li>
+</ul>
+<h3 id="向量存储的工作原理"><a href="#向量存储的工作原理" class="headerlink" title="向量存储的工作原理"></a>向量存储的工作原理</h3><p>如上</p>
+<h3 id="支持的向量数据库"><a href="#支持的向量数据库" class="headerlink" title="支持的向量数据库"></a>支持的向量数据库</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769412901660.png"
+                      alt="1769412901660"
+                ></p>
+<p>对于每种 Vector Store 实现，我们都可以参考对应的官方文档进行整合，开发方法基本一致：先准备好数据源 &#x3D;&gt; 引入不同的整合包 &#x3D;&gt; 编写对应的配置 &#x3D;&gt; 使用自动注入的 VectorStore 即可。</p>
+<p>值得一提的是，Spring AI Alibaba 已经集成了阿里云百炼平台，可以直接使用阿里云百炼平台提供的 Vector API，无需自己再搭建向量数据库了。</p>
+<p>参考官方文档，主要提供了 DashScopeCloudStore 类：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769413694600.png"
+                      alt="1769413694600"
+                ></p>
+<p>DashScopeCloudStore 类实现了 VectorStore 接口，通过调用 DashScope API 来使用阿里云提供的远程向量存储：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769414214025.png"
+                      alt="1769414214025"
+                ></p>
+<h3 id="基于-PGVector-实现向量存储"><a href="#基于-PGVector-实现向量存储" class="headerlink" title="基于 PGVector 实现向量存储"></a>基于 PGVector 实现向量存储</h3><p>（略）</p>
+<h3 id="扩展知识-批处理策略"><a href="#扩展知识-批处理策略" class="headerlink" title="扩展知识 - 批处理策略"></a>扩展知识 - 批处理策略</h3><p>在使用向量存储时，可能要嵌入大量文档，如果一次性处理存储大量文档，可能会导致性能问题、甚至出现错误导致数据不完整。为此，Spring AI 实现了批处理策略（Batching Strategy），将大量文档分解为较小的批次，使其适合嵌入模型的最大上下文窗口，还可以提高性能并更有效地利用 API 速率限制。</p>
+<p>Spring AI 通过 BatchingStrategy 接口提供该功能，该接口允许基于文档地标记计数并以分批方式处理文档：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BatchingStrategy</span> &#123;</span><br><span class="line">    List&lt;List&lt;Document&gt;&gt; <span class="title function_">batch</span><span class="params">(List&lt;Document&gt; documents)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>该</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/RAG-%E7%9F%A5%E8%AF%86%E5%BA%93/1769494539500.png"
+                      alt="1769494539500"
+                ></p>
+<h2 id="文档过滤和检索"><a href="#文档过滤和检索" class="headerlink" title="文档过滤和检索"></a>文档过滤和检索</h2><h2 id="查询增强和关联"><a href="#查询增强和关联" class="headerlink" title="查询增强和关联"></a>查询增强和关联</h2><h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><h2 id="本地实践"><a href="#本地实践" class="headerlink" title="本地实践"></a>本地实践</h2><h3 id="基础版"><a href="#基础版" class="headerlink" title="基础版"></a>基础版</h3><h3 id="进阶版"><a href="#进阶版" class="headerlink" title="进阶版"></a>进阶版</h3><h2 id="云端实践"><a href="#云端实践" class="headerlink" title="云端实践"></a>云端实践</h2><h3 id="云端知识库"><a href="#云端知识库" class="headerlink" title="云端知识库"></a>云端知识库</h3><h3 id="PGVector"><a href="#PGVector" class="headerlink" title="PGVector"></a>PGVector</h3>
         </div>
 
         
@@ -504,7 +728,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-01-22 17:06:21
+                    :</strong> 2026-01-27 20:15:54
             </li>
         
         <li>
@@ -531,6 +755,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2026/01/27/test/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -605,7 +844,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">RAG 知识库</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RAG-%E7%9F%A5%E8%AF%86%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">RAG 知识库基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-RAG"><span class="nav-text">什么是 RAG?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAG-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">RAG 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E6%A1%A3%E6%94%B6%E9%9B%86%E5%92%8C%E5%88%87%E5%89%B2%EF%BC%88ETL%EF%BC%89"><span class="nav-text">1、文档收集和切割（ETL）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%90%91%E9%87%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text">2、向量转换和存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%96%87%E6%A1%A3%E8%BF%87%E6%BB%A4%E5%92%8C%E6%A3%80%E7%B4%A2"><span class="nav-text">3、文档过滤和检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%9F%A5%E8%AF%A2%E5%A2%9E%E5%BC%BA%E5%92%8C%E5%85%B3%E8%81%94"><span class="nav-text">4、查询增强和关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">完整工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAG-%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">RAG 相关技术</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RAG-%E7%9F%A5%E8%AF%86%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">RAG 知识库基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-RAG"><span class="nav-text">什么是 RAG?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAG-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">RAG 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E6%A1%A3%E6%94%B6%E9%9B%86%E5%92%8C%E5%88%87%E5%89%B2%EF%BC%88ETL%EF%BC%89"><span class="nav-text">1、文档收集和切割（ETL）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%90%91%E9%87%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text">2、向量转换和存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%96%87%E6%A1%A3%E8%BF%87%E6%BB%A4%E5%92%8C%E6%A3%80%E7%B4%A2"><span class="nav-text">3、文档过滤和检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%9F%A5%E8%AF%A2%E5%A2%9E%E5%BC%BA%E5%92%8C%E5%85%B3%E8%81%94"><span class="nav-text">4、查询增强和关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">完整工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAG-%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">RAG 相关技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedding-%E5%92%8C-Embedding-%E6%A8%A1%E5%9E%8B"><span class="nav-text">Embedding 和 Embedding 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">向量数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AC%E5%9B%9E-Recall"><span class="nav-text">召回 Recall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E6%8E%92%E5%92%8C-Rank-%E6%A8%A1%E5%9E%8B"><span class="nav-text">精排和 Rank 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5"><span class="nav-text">混合检索策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAG-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="nav-text">RAG 核心特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E8%A7%88"><span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E6%94%B6%E9%9B%86%E5%92%8C%E5%88%87%E5%89%B2-ETL"><span class="nav-text">文档收集和切割 - ETL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETL"><span class="nav-text">ETL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text">向量转换和存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VectorStore-%E6%8E%A5%E5%8F%A3%E4%BB%8B%E7%BB%8D"><span class="nav-text">VectorStore 接口介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E8%AF%B7%E6%B1%82%E6%9E%84%E5%BB%BA"><span class="nav-text">搜索请求构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%AD%98%E5%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">向量存储的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">支持的向量数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-PGVector-%E5%AE%9E%E7%8E%B0%E5%90%91%E9%87%8F%E5%AD%98%E5%82%A8"><span class="nav-text">基于 PGVector 实现向量存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86-%E6%89%B9%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="nav-text">扩展知识 - 批处理策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E8%BF%87%E6%BB%A4%E5%92%8C%E6%A3%80%E7%B4%A2"><span class="nav-text">文档过滤和检索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%A2%9E%E5%BC%BA%E5%92%8C%E5%85%B3%E8%81%94"><span class="nav-text">查询增强和关联</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%AE%9E%E8%B7%B5"><span class="nav-text">本地实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%89%88"><span class="nav-text">基础版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E7%89%88"><span class="nav-text">进阶版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%91%E7%AB%AF%E5%AE%9E%E8%B7%B5"><span class="nav-text">云端实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%91%E7%AB%AF%E7%9F%A5%E8%AF%86%E5%BA%93"><span class="nav-text">云端知识库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PGVector"><span class="nav-text">PGVector</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>

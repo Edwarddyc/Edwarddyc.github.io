@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Edward YC">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/01/27/ai-工具开发/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="总览工具开发是Spring AI 中我认为非常有趣和核心的地方。区别于 AI 开发技法中的修改 Prompt，调用不同的工具可以让 Agent 获得实际操作各种具体函数并且获得准确值的能力。常有的功能包括：文件操作、联网搜索、网页抓取、终端操作、资源下载和 PDF 生成。 本片文档包含三个部分： 第一部分：工具调用的基本原理 第二部分：常用的工具开发 + 工具注册 第三部分：工具调用核心原理，涉及">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 工具开发">
+<meta property="og:url" content="http://example.com/2026/01/27/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总览工具开发是Spring AI 中我认为非常有趣和核心的地方。区别于 AI 开发技法中的修改 Prompt，调用不同的工具可以让 Agent 获得实际操作各种具体函数并且获得准确值的能力。常有的功能包括：文件操作、联网搜索、网页抓取、终端操作、资源下载和 PDF 生成。 本片文档包含三个部分： 第一部分：工具调用的基本原理 第二部分：常用的工具开发 + 工具注册 第三部分：工具调用核心原理，涉及">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517459139.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517857444.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517931324.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769518900937.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769519082315.png">
+<meta property="og:image" content="http://example.com/image/test/1769600983057.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769601069075.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769611259113.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769612186526.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769613734092.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769670795228.png">
+<meta property="og:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769662407756.png">
+<meta property="article:published_time" content="2026-01-27T11:59:16.000Z">
+<meta property="article:modified_time" content="2026-01-29T07:55:10.255Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517459139.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            AI 工具开发 -
+        
+        EDYC&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-48e1yy.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-x8831v.webp","dark":"/images/wallhaven-x8831v.webp"},"title":"Oh Captain! My Captain!","subtitle":{"text":["无行则无知"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Edwarddyc","instagram":"https://www.instagram.com/ed1210537/","zhihu":null,"twitter":null,"email":null,"weibo":"https://weibo.com/u/7328273521"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Weibo":"https://weibo.com/u/7328273521","Github":"https://github.com/Edwarddyc","Blog":"https://edwarddyc.github.io/","Friends":"/friends"}},"Links":{"icon":"fa-regular fa-link","submenus":{"Link1":"/link1","Link2":"/link2","Link3":"/link3"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Shuoshuo":{"path":"/shuoshuo","icon":"fa-thin fa-comment-dots"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/16 12:20:13"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                EDYC&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        LINKS&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/link1">LINK1
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link2">LINK2
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/link3">LINK3
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://weibo.com/u/7328273521">WEIBO</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/Edwarddyc">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://edwarddyc.github.io/">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                LINKS&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link1">LINK1</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link2">LINK2</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/link3">LINK3</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">AI 工具开发</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Edward YC</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-01-27 19:59:16</span>
+        <span class="mobile">2026-01-27 19:59:16</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-01-29 15:55:10</span>
+            <span class="mobile">2026-01-29 15:55:10</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>16 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><p>工具开发是Spring AI 中我认为非常有趣和核心的地方。区别于 AI 开发技法中的修改 Prompt，调用不同的工具可以让 Agent 获得实际操作各种具体函数并且获得准确值的能力。常有的功能包括：文件操作、联网搜索、网页抓取、终端操作、资源下载和 PDF 生成。</p>
+<p>本片文档包含三个部分：</p>
+<p>第一部分：工具调用的基本原理</p>
+<p>第二部分：常用的工具开发 + 工具注册</p>
+<p>第三部分：工具调用核心原理，涉及到 ToolCallBack（包含 ToolDefinition、ToolMetadata 和 call），其中 tooldefinition 决定了工具的基本信息，toolmetadata 包含了元信息可以增加新的功能比如说立即返回。call 方法就是执行工具并将结果返回给 AI，这里有一个 ToolContext 可以辅助。在底层调用原理中，有一个 ToolCallingManager 决定具体的执行，包括工具的解析和执行。</p>
+<h1 id="工具调用介绍"><a href="#工具调用介绍" class="headerlink" title="工具调用介绍"></a>工具调用介绍</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>工具调用 Tool Calling，让 AI 大模型 <strong>借用外部工具</strong> 来完成它自己做不到的事情。</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>工具调用的原理是当用户把问题发送给大模型的时候，大模型判断是否需要调用工具，然后让后端执行工具并将结构返回给 AI，大模型之后再结合得到的结果返回答案。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517459139.png"
+                      alt="1769517459139"
+                ></p>
+<p>！！！AI 负责决定什么时候需要用工具，以及需要传递什么参数，真正执行工具的是程序。</p>
+<h2 id="工具调用技术选型"><a href="#工具调用技术选型" class="headerlink" title="工具调用技术选型"></a>工具调用技术选型</h2><p>参考 <a class="link"   target="_blank" rel="noopener" href="https://docs.spring.io/spring-ai/reference/api/chat/comparison.html" >官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517857444.png"
+                      alt="1769517857444"
+                ></p>
+<h1 id="Spring-AI-工具开发"><a href="#Spring-AI-工具开发" class="headerlink" title="Spring AI 工具开发"></a>Spring AI 工具开发</h1><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769517931324.png"
+                      alt="1769517931324"
+                ></p>
+<p>涉及工具定义与注册、工具调用请求、工具执行、处理工具结果、返回结果给模型、生成最终响应。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769518900937.png"
+                      alt="1769518900937"
+                ></p>
+<h2 id="定义工具"><a href="#定义工具" class="headerlink" title="定义工具"></a>定义工具</h2><h3 id="工具定义模式"><a href="#工具定义模式" class="headerlink" title="工具定义模式"></a>工具定义模式</h3><p>在 Spring AI 中，定义工具主要有两种模式：基于 Methods 方法或者 Functions 函数式编程。</p>
+<p>核心：使用 Methods 方法，更容易编写、理解、支持的参数和返回类型更多。</p>
+<p>二者对别图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769519082315.png"
+                      alt="1769519082315"
+                ></p>
+<p>举个例子来对别这两种定义模式：</p>
+<p>1）Methods 模式：通过 <code>@Tool</code> 注解定义工具，通过 <code>tools</code> 方法绑定工具；</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WeatherTools</span> &#123;</span><br><span class="line">    <span class="meta">@Tool(description = &quot;Get current weather for a location&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getWeather</span><span class="params">(<span class="meta">@ToolParam(description = &quot;The city name&quot;)</span> String city)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Current weather in &quot;</span> + city + <span class="string">&quot;: Sunny, 25°C&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用方式</span></span><br><span class="line">ChatClient.create(chatModel)</span><br><span class="line">    .prompt(<span class="string">&quot;What&#x27;s the weather in Beijing?&quot;</span>)</span><br><span class="line">    .tools(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>())</span><br><span class="line">    .call();</span><br></pre></td></tr></table></figure></div>
+
+<p>2）Functions 模式：通过 <code>@Bean</code> 注解定义工具，通过 <code>functions</code> 方法绑定工具</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToolConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Description(&quot;Get current weather for a location&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Function&lt;WeatherRequest, WeatherResponse&gt; <span class="title function_">weatherFunction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> request -&gt; <span class="keyword">new</span> <span class="title class_">WeatherResponse</span>(<span class="string">&quot;Weather in &quot;</span> + request.getCity() + <span class="string">&quot;: Sunny, 25°C&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用方式</span></span><br><span class="line">ChatClient.create(chatModel)</span><br><span class="line">    .prompt(<span class="string">&quot;What&#x27;s the weather in Beijing?&quot;</span>)</span><br><span class="line">    .functions(<span class="string">&quot;weatherFunction&quot;</span>)</span><br><span class="line">    .call();</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="定义工具-1"><a href="#定义工具-1" class="headerlink" title="定义工具*"></a>定义工具*</h3><p>Spring AI 提供了两种定义工具的方式 —— <strong>注解式</strong> 和 <strong>编程式</strong>。</p>
+<p>1）注解式：只需使用 <code>@Tool</code> 注解标记普通 Java 方法，就可以定义工具。</p>
+<p>每个工具最好都添加详细清晰的描述，帮助 AI 理解何时应该调用这个工具。对于工具方法的参数，可以使用 <code>@ToolParam</code> 注解提供额外的描述信息和是否必填。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WeatherTools</span> &#123;</span><br><span class="line">    <span class="meta">@Tool(description = &quot;获取指定城市的当前天气情况&quot;)</span></span><br><span class="line">    String <span class="title function_">getWeather</span><span class="params">(<span class="meta">@ToolParam(description = &quot;城市名称&quot;)</span> String city)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取天气的实现逻辑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;北京今天晴朗，气温25°C&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>2）编程式：如果想在运行时动态创建工具，可以选择编程式来定义工具，更灵活。</p>
+<p>先定义工具类：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WeatherTools</span> &#123;</span><br><span class="line">    String <span class="title function_">getWeather</span><span class="params">(String city)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取天气的实现逻辑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;北京今天晴朗，气温25°C&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后将工具类转换为 ToolCallback 工具定义类，之后可以把这个类绑定给 ChatClient，从而让 AI 使用工具了。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> ReflectionUtils.findMethod(WeatherTools.class, <span class="string">&quot;getWeather&quot;</span>, String.class);</span><br><span class="line"><span class="type">ToolCallback</span> <span class="variable">toolCallback</span> <span class="operator">=</span> MethodToolCallback.builder()</span><br><span class="line">    .toolDefinition(ToolDefinition.builder(method)</span><br><span class="line">            .description(<span class="string">&quot;获取指定城市的当前天气情况&quot;</span>)</span><br><span class="line">            .build())</span><br><span class="line">    .toolMethod(method)</span><br><span class="line">    .toolObject(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>())</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></div>
+
+<p>编程式是把注解式的那些参数，改成通过调用方法来设置。</p>
+<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><p>定义好工具后，Spring AI 提供了多种灵活的方式将工具提供给 ChatClient，让 AI 能够在需要时调用这些工具。（ 四种情况 ）</p>
+<p>1）按需使用：这是最简单的方式，直接构建 ChatClient 请求时通过 <code>tools()</code> 方法附加工具。这种方法适合在特定对话中使用某些工具的场景。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">response</span> <span class="operator">=</span> ChatClient.create(chatModel)</span><br><span class="line">    .prompt(<span class="string">&quot;北京今天天气怎么样？&quot;</span>)</span><br><span class="line">    .tools(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>())  <span class="comment">// 在这次对话中提供天气工具</span></span><br><span class="line">    .call()</span><br><span class="line">    .content();</span><br></pre></td></tr></table></figure></div>
+
+<p>2）全局使用：如果某些工具需要在所有对话中都可用，可以在构建 ChatClient 时注册默认工具。这样，这些工具将对从同一个 ChatClient 发起的所有对话可用。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ChatClient</span> <span class="variable">chatClient</span> <span class="operator">=</span> ChatClient.builder(chatModel)</span><br><span class="line">    .defaultTools(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>(), <span class="keyword">new</span> <span class="title class_">TimeTools</span>())  <span class="comment">// 注册默认工具</span></span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></div>
+
+<p>3）更底层的使用方式：除了给 ChatClient 绑定工具外，也可以给更底层的 ChatModel 绑定工具，适合需要更精细控制的场景。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先得到工具对象</span></span><br><span class="line">ToolCallback[] weatherTools = ToolCallbacks.from(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>());</span><br><span class="line"><span class="comment">// 绑定工具到对话</span></span><br><span class="line"><span class="type">ChatOptions</span> <span class="variable">chatOptions</span> <span class="operator">=</span> ToolCallingChatOptions.builder()</span><br><span class="line">    .toolCallbacks(weatherTools)</span><br><span class="line">    .build();</span><br><span class="line"><span class="comment">// 构造 Prompt 时指定对话选项</span></span><br><span class="line"><span class="type">Prompt</span> <span class="variable">prompt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Prompt</span>(<span class="string">&quot;北京今天天气怎么样？&quot;</span>, chatOptions);</span><br><span class="line">chatModel.call(prompt);</span><br></pre></td></tr></table></figure></div>
+
+<p>4）动态解析*：一般情况下，使用前面 3 种方式即可。对于更复杂的应用，Spring AI 还支持通过 <code>ToolCallbackResolver</code> 在运行时动态解析工具。这种方式特别适合工具需要根据上下文动态确定的场景，比如从数据库中根据名搜索调用的工具。</p>
+<p>总结，在使用工具时，Spring AI 会自动处理工具调用的全过程：从 AI 模型决定调用工具 &#x3D;&gt; 到执行工具方法 &#x3D;&gt; 将结果返回给模型 &#x3D;&gt; 模型基于工具结果生成最终回答。</p>
+<h2 id="工具生态"><a href="#工具生态" class="headerlink" title="工具生态"></a>工具生态</h2><p>工具的本质就是一种插件，可以直接在网上找一些优秀的工具实现，比如 <a class="link"   target="_blank" rel="noopener" href="https://java2ai.com/docs/overview/" >Spring AI Alibaba 官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中提到了社区插件。</p>
+<p>在 <a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-ai-alibaba/tree/main" >GitHub 社区 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>找到官方提供的更多 工具源码，包含大量有用的工具。比如翻译工具、网页搜索工具、爬虫工具、地图工具等。</p>
+<h1 id="主流工具开发"><a href="#主流工具开发" class="headerlink" title="主流工具开发"></a>主流工具开发</h1><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>文件的读与写。</p>
+<h2 id="联网操作"><a href="#联网操作" class="headerlink" title="联网操作"></a>联网操作</h2><p>联网搜索工具的作用是根据关键词搜索网页列表。</p>
+<p>使用专业的网页搜索 API，如 <a class="link"   target="_blank" rel="noopener" href="https://www.searchapi.io/baidu" >Search API <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 来实现从多个网站搜索内容，这类服务通常按量计费。当然也可以直接使用 Google 或 Bing 的搜索 API （通过爬虫和网页解析从某个搜索引擎获取内容）。</p>
+<p>1）阅读 Search API 的官方文档，重点关注 API 的请求参数和返回结果。从 API 返回的结果中，我们只需要提取关键部分：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;organic_results&quot;</span>: [</span><br><span class="line">    ...</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;position&quot;</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">&quot;title&quot;</span>: <span class="string">&quot;编程导航 - 程序员一站式编程学习交流社区,做您编程学习路...&quot;</span>,</span><br><span class="line">      <span class="string">&quot;link&quot;</span>: <span class="string">&quot;https://codefather.cn/&quot;</span>,</span><br><span class="line">      <span class="string">&quot;displayed_link&quot;</span>: <span class="string">&quot;codefather.cn/&quot;</span>,</span><br><span class="line">      <span class="string">&quot;snippet&quot;</span>: <span class="string">&quot;学编程,就来编程导航,程序员免费编程学习交流社区。Java,Python,前端,web网站开发,C语言,C++,Go,后端,SQL,数据库,PHP入门学习、技能提升、求职面试法宝。提升编程效率、优质IT技术文章、海...&quot;</span>,</span><br><span class="line">      <span class="string">&quot;snippet_highlighted_words&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;编程&quot;</span>,</span><br><span class="line">        <span class="string">&quot;编程导航&quot;</span>,</span><br><span class="line">        <span class="string">&quot;程序员&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">&quot;thumbnail&quot;</span>: <span class="string">&quot;https://t8.baidu.com/it/u=661528516,2886240705&amp;fm=217&amp;app=126&amp;size=f242,150&amp;n=0&amp;f=JPEG&amp;fmt=auto?s=73B489634AD237E3660C19280200A063&amp;sec=1744477200&amp;t=b5d8762a6f5728d5f2fbc6bcf1774b20&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>2）可以把接口文档喂给 AI，让它帮忙生成工具代码，网页搜索工具代码如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebSearchTool</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// SearchAPI 的搜索接口地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SEARCH_API_URL</span> <span class="operator">=</span> <span class="string">&quot;https://www.searchapi.io/api/v1/search&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String apiKey;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">WebSearchTool</span><span class="params">(String apiKey)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.apiKey = apiKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Tool(description = &quot;Search for information from Baidu Search Engine&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">searchWeb</span><span class="params">(</span></span><br><span class="line"><span class="params">            <span class="meta">@ToolParam(description = &quot;Search query keyword&quot;)</span> String query)</span> &#123;</span><br><span class="line">        Map&lt;String, Object&gt; paramMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        paramMap.put(<span class="string">&quot;q&quot;</span>, query);</span><br><span class="line">        paramMap.put(<span class="string">&quot;api_key&quot;</span>, apiKey);</span><br><span class="line">        paramMap.put(<span class="string">&quot;engine&quot;</span>, <span class="string">&quot;baidu&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">response</span> <span class="operator">=</span> HttpUtil.get(SEARCH_API_URL, paramMap);</span><br><span class="line">            <span class="comment">// 取出返回结果的前 5 条</span></span><br><span class="line">            <span class="type">JSONObject</span> <span class="variable">jsonObject</span> <span class="operator">=</span> JSONUtil.parseObj(response);</span><br><span class="line">            <span class="comment">// 提取 organic_results 部分</span></span><br><span class="line">            <span class="type">JSONArray</span> <span class="variable">organicResults</span> <span class="operator">=</span> jsonObject.getJSONArray(<span class="string">&quot;organic_results&quot;</span>);</span><br><span class="line">            List&lt;Object&gt; objects = organicResults.subList(<span class="number">0</span>, <span class="number">5</span>);</span><br><span class="line">            <span class="comment">// 拼接搜索结果为字符串</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> objects.stream().map(obj -&gt; &#123;</span><br><span class="line">                <span class="type">JSONObject</span> <span class="variable">tmpJSONObject</span> <span class="operator">=</span> (JSONObject) obj;</span><br><span class="line">                <span class="keyword">return</span> tmpJSONObject.toString();</span><br><span class="line">            &#125;).collect(Collectors.joining(<span class="string">&quot;,&quot;</span>));</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Error searching Baidu: &quot;</span> + e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="网页抓取"><a href="#网页抓取" class="headerlink" title="网页抓取"></a>网页抓取</h2><h2 id="终端操作"><a href="#终端操作" class="headerlink" title="终端操作"></a>终端操作</h2><h2 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/test/1769600983057.png"
+                      alt="1769600983057"
+                ></h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769601069075.png"
+                      alt="1769601069075"
+                ></p>
+<h2 id="PDF-生成"><a href="#PDF-生成" class="headerlink" title="PDF 生成"></a>PDF 生成</h2><p>PDF 生成工具的作用是根据文件名和内容生成 PDF 文档并保存。</p>
+<p>可以使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/itext/itext-java" >itext库 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 实现 PDF 生成。需要注意的是，itext 对中文字体的支持需要额外配置，不同操作系统提供的字体也不同，如果真要做生产级应用，建议自行下载所需字体。</p>
+<p>可以使用内置中文字体（不引入 font-asian 字体依赖也可以使用）</p>
+<h1 id="调用工具"><a href="#调用工具" class="headerlink" title="调用工具"></a>调用工具</h1><h2 id="集中注册"><a href="#集中注册" class="headerlink" title="集中注册"></a>集中注册</h2><p>完成工具的开发之后，结合我们自己的需求，可以给 AI 一次性提供所有工具，让它自己决定何时调用。所以我们可以创建 <strong>工具注册类</strong>，方便统一管理和绑定所有工具</p>
+<h1 id="工具进阶知识"><a href="#工具进阶知识" class="headerlink" title="工具进阶知识"></a>工具进阶知识</h1><h2 id="工具底层数据结构"><a href="#工具底层数据结构" class="headerlink" title="工具底层数据结构"></a>工具底层数据结构</h2><p><strong>ToolCallback &amp; ToolDefinition</strong></p>
+<p>问题：AI 怎么知道要如何调用工具？输出结果中应该包含哪些参数来调用工具呢？</p>
+<p>Spring AI 工具调用核心在于 <code>ToolCallback</code> 接口，它是所有工具实现的基础。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ToolCallback</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Definition used by the AI model to determine when and how to call the tool.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ToolDefinition <span class="title function_">getToolDefinition</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Metadata providing additional information on how to handle the tool.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ToolMetadata <span class="title function_">getToolMetadata</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Execute tool with the given input and return the result to send back to the AI model.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    String <span class="title function_">call</span><span class="params">(String toolInput)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Execute tool with the given input and context, and return the result to send back to the AI model.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    String <span class="title function_">call</span><span class="params">(String toolInput, ToolContext tooContext)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个接口中：</p>
+<ul>
+<li><code>getToolDefinition()</code> 提供了工具的基本定义，包括名称、描述和调用参数，这些信息会传递给 AI 模型，帮助模型了解什么时候应该调用这个工具、以及如何构造参数；</li>
+<li><code>getToolMetadata()</code> 提供了处理工具的附加信息，比如是否直接返回结果等控制选项；（立即返回）</li>
+<li>两个 <code>call()</code> 方法是工具的执行入口，分别支持有上下文和无上下文的调用场景。</li>
+</ul>
+<p>工具定义类 ToolDefinition 的结构如下图、包含名称、描述和调用工具的参数：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ToolDefinition</span> &#123;</span><br><span class="line">    String <span class="title function_">name</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">description</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">inputSchema</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> DefaultToolDefinition.Builder <span class="title function_">builder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DefaultToolDefinition.builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> DefaultToolDefinition.Builder <span class="title function_">builder</span><span class="params">(Method method)</span> &#123;</span><br><span class="line">        Assert.notNull(method, <span class="string">&quot;method cannot be null&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> DefaultToolDefinition.builder().name(ToolUtils.getToolName(method)).description(ToolUtils.getToolDescription(method)).inputSchema(JsonSchemaGenerator.generateForMethodInput(method, <span class="keyword">new</span> <span class="title class_">JsonSchemaGenerator</span>.SchemaOption[<span class="number">0</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> ToolDefinition <span class="title function_">from</span><span class="params">(Method method)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> builder(method).build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>可以利用构造器手动创建一个工具定义：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769611259113.png"
+                      alt="1769611259113"
+                ></p>
+<p>问：为什么直接通过注解就能把方法变成工具呢？（Spring AI 完成工作）</p>
+<ol>
+<li><code>JsonSchemaGenerator</code> 会解析方法签名和注解，自动生成符合 JSON Schema 规范的参数定义，作为 ToolDefinition 的一部分提供给 AI 大模型；</li>
+<li><code>ToolCallResultConverter</code> 负责将各种类型的方法返回值统一转换为字符串，便于传递给 AI 大模型处理；</li>
+<li><code>MethodToolCallback</code> 实现了对注解方法的封装，使其符合 <code>ToolCallback</code> 接口规范。</li>
+</ol>
+<p>如果需要更精细的控制，我们可以自定义 <code>ToolCallResultConverter</code> 来实现特定的转换逻辑，例如对某些特殊对象的自定义序列化。</p>
+<h2 id="工具上下文"><a href="#工具上下文" class="headerlink" title="工具上下文"></a>工具上下文</h2><p><strong>ToolContext</strong></p>
+<p>在实际应用中，工具执行可能需要额外的上下文信息，比如登录用户信息、会话 ID 或者其他环境参数。Spring AI 通过 <code>ToolContext</code> 提供这一能力。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769612186526.png"
+                      alt="1769612186526"
+                ></p>
+<p>我们可以在调用 AI 大模型时，传递上下文参数。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从已登录用户中获取用户名称</span></span><br><span class="line"><span class="type">String</span> <span class="variable">loginUserName</span> <span class="operator">=</span> getLoginUserName();</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">response</span> <span class="operator">=</span> chatClient</span><br><span class="line">        .prompt(<span class="string">&quot;帮我查询用户信息&quot;</span>)</span><br><span class="line">        .tools(<span class="keyword">new</span> <span class="title class_">CustomerTools</span>())</span><br><span class="line">        .toolContext(Map.of(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;ed&quot;</span>))</span><br><span class="line">        .call()</span><br><span class="line">        .content();</span><br><span class="line"></span><br><span class="line">System.out.println(response);</span><br></pre></td></tr></table></figure></div>
+
+<p>在工具中使用上下文参数，比如在数据库中查询 ed 的信息：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CustomerTools</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Tool(description = &quot;Retrieve customer information&quot;)</span></span><br><span class="line">    Customer <span class="title function_">getCustomerInfo</span><span class="params">(Long id, ToolContext toolContext)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> customerRepository.findById(id, toolContext.getContext().get(<span class="string">&quot;userName&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><a href=""><code>ToolContext</code></a> 本质是一个 Map：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToolContext</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TOOL_CALL_HISTORY</span> <span class="operator">=</span> <span class="string">&quot;TOOL_CALL_HISTORY&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; context;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ToolContext</span><span class="params">(Map&lt;String, Object&gt; context)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.context = Collections.unmodifiableMap(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title function_">getContext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;Message&gt; <span class="title function_">getToolCallHistory</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (List)<span class="built_in">this</span>.context.get(<span class="string">&quot;TOOL_CALL_HISTORY&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：<strong>ToolContext 可以携带任何与当前请求相关的信息，但这些信息不会传递给 AI 模型，只在应用程序内部使用</strong>。保证工具的安全性、灵活。适用下面的场景：</p>
+<ul>
+<li>用户认证信息：可以在上下文中传递用户 token，而不暴露给模型；</li>
+<li>请求追踪：在上下文中添加请求 ID，便于日志追踪和调试；</li>
+<li>自定义配置：根据不同场景传递特定配置参数。</li>
+</ul>
+<h2 id="立即返回"><a href="#立即返回" class="headerlink" title="立即返回"></a>立即返回</h2><p>针对一种情况，工具执行的结果不需要再经过 AI 模型处理，而是希望直接返回给用户（如生成 PDF 文档）。Spring AI 通过 <code>returnDirect</code> 属性支持这一功能。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769613734092.png"
+                      alt="1769613734092"
+                ></p>
+<p>基本流程：</p>
+<ol>
+<li>定义工具时，将 <code>returnDirect</code> 属性为 <code>true</code></li>
+<li>当模型请求调用这个工具时，应用程序执行工具并获取结果</li>
+<li>结果直接返回给调用者，不再发送回模型进行进一步处理</li>
+</ol>
+<p>应用方法：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CustomerTools</span> &#123;</span><br><span class="line">    <span class="meta">@Tool(description = &quot;Retrieve customer information&quot;, returnDirect = true)</span></span><br><span class="line">    Customer <span class="title function_">getCustomerInfo</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> customerRepository.findById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>使用编程方法时，手动构造 ToolMetadata 对象：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置元数据包含 returnDirect 属性</span></span><br><span class="line"><span class="type">ToolMetadata</span> <span class="variable">toolMetadata</span> <span class="operator">=</span> ToolMetadata.builder()</span><br><span class="line">    .returnDirect(<span class="literal">true</span>)</span><br><span class="line">    .build();</span><br><span class="line"></span><br><span class="line"><span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> ReflectionUtils.findMethod(CustomerTools.class, <span class="string">&quot;getCustomerInfo&quot;</span>, Long.class);</span><br><span class="line"><span class="type">ToolCallback</span> <span class="variable">toolCallback</span> <span class="operator">=</span> MethodToolCallback.builder()</span><br><span class="line">    .toolDefinition(ToolDefinition.builder(method)</span><br><span class="line">            .description(<span class="string">&quot;Retrieve customer information&quot;</span>)</span><br><span class="line">            .build())</span><br><span class="line">    .toolMethod(method)</span><br><span class="line">    .toolObject(<span class="keyword">new</span> <span class="title class_">CustomerTools</span>())</span><br><span class="line">    .toolMetadata(toolMetadata)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="工具底层执行原理"><a href="#工具底层执行原理" class="headerlink" title="工具底层执行原理"></a>工具底层执行原理</h2><p>Spring AI 提供了两种工具执行模式：框架控制的工具执行和用户控制的工具执行。这两种模式有一个共同的核心组件 —— <code>ToolCallingManager</code>。</p>
+<h3 id="ToolCallingManager"><a href="#ToolCallingManager" class="headerlink" title="ToolCallingManager"></a>ToolCallingManager</h3><p><code>ToolCallingManager</code> 接口是管理 AI 工具调用全过程的核心组件，负责根据 AI 模型的响应执行对应的工具并将结果返回给大模型。此外，它还支持异常处理，可以统一处理工具执行过程中的错误情况。</p>
+<p>接口源码</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ToolCallingManager</span> &#123;</span><br><span class="line">    List&lt;ToolDefinition&gt; <span class="title function_">resolveToolDefinitions</span><span class="params">(ToolCallingChatOptions chatOptions)</span>;</span><br><span class="line"></span><br><span class="line">    ToolExecutionResult <span class="title function_">executeToolCalls</span><span class="params">(Prompt prompt, ChatResponse chatResponse)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> DefaultToolCallingManager.Builder <span class="title function_">builder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DefaultToolCallingManager.builder();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>核心方法：</p>
+<ol>
+<li>resolbeToolDefinitions：从模型的工具调用选项中解析工具定义</li>
+<li>executeToolCalls：执行模型请求对应的工具调用，观察 ChatResponse 中有一个 HasToolCalls</li>
+</ol>
+<p>模型的执行流程文本演示</p>
+<ol>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769670795228.png"
+                      alt="1769670795228"
+                ></li>
+</ol>
+<p>Spring AI 相关的 Spring Boot Starter，都会默认初始化一个 <code>DefaultToolCallingManager</code>，如果不想用默认的，也可以自己定义 ToolCallingManager Bean。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">ToolCallingManager <span class="title function_">toolCallingManager</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ToolCallingManager.builder().build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="框架控制的工具执行"><a href="#框架控制的工具执行" class="headerlink" title="框架控制的工具执行"></a>框架控制的工具执行</h3><p>默认模式，由 Spring AI 框架自动管理整个工具调用流程：</p>
+<ul>
+<li>框架自动检测模型是否请求调用工具</li>
+<li>自动执行工具调用并获取结果</li>
+<li>自动将结果发送回模型</li>
+<li>管理整个对话流程直到获得最终答案</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/1769662407756.png"
+                      alt="1769662407756"
+                ></p>
+<p>其中，<code>ToolCallingManager</code> 起到了关键作用，由框架使用默认初始化的 <code>DefaultToolCallingManager</code> 来自动管理整个工具调用流程。</p>
+<h3 id="用户控制的工具执行"><a href="#用户控制的工具执行" class="headerlink" title="用户控制的工具执行"></a>用户控制的工具执行</h3><p>对于需要更精细控制的复杂场景，Spring AI 提供了用户控制模式，可以通过设置 ToolCallingChatOptions 的 internationalToolExecutionEnabled 属性为 false 来禁止内部工具执行。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置不自动执行工具</span></span><br><span class="line"><span class="type">ChatOptions</span> <span class="variable">chatOptions</span> <span class="operator">=</span> ToolCallingChatOptions.builder()</span><br><span class="line">    .toolCallbacks(ToolCallbacks.from(<span class="keyword">new</span> <span class="title class_">WeatherTools</span>()))</span><br><span class="line">    .internalToolExecutionEnabled(<span class="literal">false</span>)  <span class="comment">// 禁用内部工具执行</span></span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></div>
+
+<p>然后再从 AI 的响应结果中提取工具调用列表就可以。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建工具调用管理器</span></span><br><span class="line"><span class="type">ToolCallingManager</span> <span class="variable">toolCallingManager</span> <span class="operator">=</span> DefaultToolCallingManager.builder().build();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建初始提示</span></span><br><span class="line"><span class="type">Prompt</span> <span class="variable">prompt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Prompt</span>(<span class="string">&quot;获取编程导航的热门项目教程&quot;</span>, chatOptions);</span><br><span class="line"><span class="comment">// 发送请求给模型</span></span><br><span class="line"><span class="type">ChatResponse</span> <span class="variable">chatResponse</span> <span class="operator">=</span> chatModel.call(prompt);</span><br><span class="line"><span class="comment">// 手动处理工具调用循环</span></span><br><span class="line"><span class="keyword">while</span> (chatResponse.hasToolCalls()) &#123;</span><br><span class="line">    <span class="comment">// 执行工具调用</span></span><br><span class="line">    <span class="type">ToolExecutionResult</span> <span class="variable">toolExecutionResult</span> <span class="operator">=</span> toolCallingManager.executeToolCalls(prompt, chatResponse);</span><br><span class="line">    <span class="comment">// 创建包含工具结果的新提示</span></span><br><span class="line">    prompt = <span class="keyword">new</span> <span class="title class_">Prompt</span>(toolExecutionResult.conversationHistory(), chatOptions);</span><br><span class="line">    <span class="comment">// 再次发送请求给模型</span></span><br><span class="line">    chatResponse = chatModel.call(prompt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取最终回答</span></span><br><span class="line">System.out.println(chatResponse.getResult().getOutput().getText());</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h2 id="工具解析"><a href="#工具解析" class="headerlink" title="工具解析"></a>工具解析</h2><h2 id="可观测性"><a href="#可观测性" class="headerlink" title="可观测性"></a>可观测性</h2>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> AI 工具开发</li>
+        <li><strong>Author:</strong> Edward YC</li>
+        <li><strong>Created at
+                :</strong> 2026-01-27 19:59:16</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-01-29 15:55:10
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://edwarddyc.github.io/2026/01/27/AI-工具开发/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+            This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2026/01/27/test/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from '/js/libs/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">AI 工具开发</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E8%A7%88"><span class="nav-text">总览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="nav-text">工具调用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-text">工具调用技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-AI-%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91"><span class="nav-text">Spring AI 工具开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7"><span class="nav-text">定义工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%BC%8F"><span class="nav-text">工具定义模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7-1"><span class="nav-text">定义工具*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-text">使用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%94%9F%E6%80%81"><span class="nav-text">工具生态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E6%B5%81%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91"><span class="nav-text">主流工具开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E7%BD%91%E6%93%8D%E4%BD%9C"><span class="nav-text">联网操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96"><span class="nav-text">网页抓取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="nav-text">终端操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD"><span class="nav-text">资源下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDF-%E7%94%9F%E6%88%90"><span class="nav-text">PDF 生成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-text">调用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E4%B8%AD%E6%B3%A8%E5%86%8C"><span class="nav-text">集中注册</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86"><span class="nav-text">工具进阶知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">工具底层数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-text">工具上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E8%BF%94%E5%9B%9E"><span class="nav-text">立即返回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%BA%95%E5%B1%82%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="nav-text">工具底层执行原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ToolCallingManager"><span class="nav-text">ToolCallingManager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E6%8E%A7%E5%88%B6%E7%9A%84%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C"><span class="nav-text">框架控制的工具执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8E%A7%E5%88%B6%E7%9A%84%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C"><span class="nav-text">用户控制的工具执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90"><span class="nav-text">工具解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="nav-text">可观测性</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Edward YC</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
